@@ -3,11 +3,98 @@
     x:Class="BandTracker.UI.Views.DashboardView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Dashboard">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
+    xmlns:local="clr-namespace:BandTracker.UI.Views"
+    xmlns:skiaExtCtrls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    Title="Dashboard"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <local:DashboardViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <ScrollView.Background>
+            <LinearGradientBrush>
+                <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
+                <GradientStop Offset="1.0" Color="{StaticResource PrimaryAlt}" />
+            </LinearGradientBrush>
+        </ScrollView.Background>
+
+        <VerticalStackLayout Padding="10" Spacing="10">
+
+            <Label
+                Margin="0,10,0,0"
+                Style="{StaticResource LabelH1}"
+                Text="Dashboard"
+                TextColor="{StaticResource PrimaryInverse}" />
+
+            <skiaExtCtrls:SKLottieView
+                HeightRequest="200"
+                RepeatCount="-1"
+                Source="guitarplayingpeople.json" />
+
+            <Label
+                Style="{StaticResource LabelH2}"
+                Text="Recent releases"
+                TextColor="{StaticResource PrimaryInverse}" />
+
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding RecentReleases}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="0,5"
+                            Padding="10"
+                            BorderColor="Transparent"
+                            HasShadow="False">
+
+                            <Frame.Background>
+                                <LinearGradientBrush>
+                                    <GradientStop Offset="0.1" Color="Transparent" />
+                                    <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
+
+                            <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                                <Image
+                                    Grid.Column="0"
+                                    HeightRequest="50"
+                                    Source="{Binding ArtImageUrl}"
+                                    WidthRequest="50">
+                                    <Image.Clip>
+                                        <RoundRectangleGeometry CornerRadius="5" Rect="0,0,50,50" />
+                                    </Image.Clip>
+                                </Image>
+                                <VerticalStackLayout Grid.Column="1">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Opacity="0.5"
+                                        Text="{Binding Author.Name}"
+                                        TextColor="{StaticResource PrimaryInverse}" />
+                                    <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryInverse}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+
+            <Button
+                FontFamily="RubikSemiBold"
+                Text="SEE RECENT RELEASES"
+                TextColor="{StaticResource AccentLight}">
+                <Button.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Offset="0.1" Color="Transparent" />
+                        <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+            <skiaExtCtrls:SKLottieView
+                HeightRequest="50"
+                RepeatCount="-1"
+                Source="waveform.json" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

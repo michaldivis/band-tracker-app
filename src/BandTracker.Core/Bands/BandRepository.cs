@@ -38,4 +38,12 @@ public class BandRepository : IBandRepository
 
         return release;
     }
+
+    public IReadOnlyList<Release> GetRecentReleases(int amount)
+    {
+        return _releases
+            .OrderByDescending(a => a.ReleaseDate)
+            .Take(amount)
+            .ToList();
+    }
 }

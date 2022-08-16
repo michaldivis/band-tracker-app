@@ -3,10 +3,12 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Color x:Key="Primary">#3a3399</Color>
-    <Color x:Key="PrimaryAlt">#333399</Color>
+    <Color x:Key="PrimaryAlt">#2d2d86</Color>
+    <Color x:Key="PrimaryLight">#4139ac</Color>
     <Color x:Key="PrimaryInverse">#fff</Color>
     <Color x:Key="Accent">#17B794</Color>
     <Color x:Key="AccentAlt">#149f9f</Color>
+    <Color x:Key="AccentLight">#1ce3b8</Color>
     <Color x:Key="AccentInverse">#fff</Color>
 
     <Color x:Key="White">White</Color>

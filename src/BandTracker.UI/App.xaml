@@ -10,6 +10,15 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Shadow
+                x:Key="ShadowSmooth"
+                Brush="#000"
+                Opacity="0.25"
+                Radius="{OnPlatform Default=20,
+                                    iOS=10}"
+                Offset="{OnPlatform Default='10,10',
+                                    iOS='5,5'}" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

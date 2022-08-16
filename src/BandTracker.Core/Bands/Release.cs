@@ -5,6 +5,8 @@ public class Release
     public Band Author { get; init; } = null!;
 
     public string Name { get; init; } = null!;
+    public DateTime ReleaseDate { get; init; }
+    public string ArtImageUrl { get; init; } = null!;
     public List<Track> Tracks { get; init; } = new();
 
     public string ReleaseType => GetReleaseType();

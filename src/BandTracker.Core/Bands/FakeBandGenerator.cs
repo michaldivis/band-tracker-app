@@ -29,6 +29,8 @@ internal class FakeBandGenerator
             .RuleFor(a => a.ReleaseId, Guid.NewGuid())
             .RuleFor(a => a.Author, author)
             .RuleFor(a => a.Name, f => f.Commerce.ProductName())
+            .RuleFor(a => a.ReleaseDate, f => f.Date.Past(10, DateTime.Now))
+            .RuleFor(a => a.ArtImageUrl, f => f.Image.PicsumUrl(500, 500))
             .RuleFor(a => a.Tracks, (f, release) => GenerateTracks(release, f.Random.Int(1, 15)))
             .Generate(amount);
     }
