@@ -1,4 +1,4 @@
-﻿namespace BandTracker.Core.Models;
+﻿namespace BandTracker.Core.Bands;
 public class Band
 {
     public Guid BandId { get; init; }

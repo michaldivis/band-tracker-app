@@ -1,4 +1,4 @@
-﻿namespace BandTracker.Core.Services;
+﻿namespace BandTracker.Core.Bands;
 public class BandRepository : IBandRepository
 {
     private readonly List<Band> _bands;

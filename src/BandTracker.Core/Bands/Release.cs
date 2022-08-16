@@ -1,4 +1,4 @@
-﻿namespace BandTracker.Core.Models;
+﻿namespace BandTracker.Core.Bands;
 public class Release
 {
     public Guid ReleaseId { get; init; }

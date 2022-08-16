@@ -1,8 +1,7 @@
-﻿using BandTracker.Core.Models;
-using Bogus;
+﻿using Bogus;
 
-namespace BandTracker.Core.Services;
-public class FakeBandGenerator
+namespace BandTracker.Core.Bands;
+internal class FakeBandGenerator
 {
     private readonly Faker<Band> _bandFaker;
 
