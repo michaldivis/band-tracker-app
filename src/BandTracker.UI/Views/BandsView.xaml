@@ -24,7 +24,10 @@
                                 <RoundRectangleGeometry CornerRadius="5" Rect="0,0,50,50" />
                             </Image.Clip>
                         </Image>
-                        <Label Grid.Column="1" Text="{Binding Name}" />
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="{Binding Name}" />
+                            <Label Opacity="0.5" Text="{Binding Genre}" />
+                        </VerticalStackLayout>
                     </Grid>
                 </Frame>
             </DataTemplate>

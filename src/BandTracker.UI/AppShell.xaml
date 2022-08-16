@@ -3,9 +3,20 @@
     x:Class="BandTracker.UI.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:essentials="clr-namespace:Microsoft.Maui.ApplicationModel;assembly=Microsoft.Maui.Essentials"
     xmlns:local="clr-namespace:BandTracker.UI"
     xmlns:views="clr-namespace:BandTracker.UI.Views"
     Shell.FlyoutBehavior="Flyout">
+
+    <Shell.FlyoutHeader>
+        <Border Padding="10,20" StrokeThickness="0">
+            <Label
+                FontSize="Large"
+                HorizontalTextAlignment="Center"
+                Text="{x:Static essentials:AppInfo.Name}"
+                VerticalTextAlignment="Center" />
+        </Border>
+    </Shell.FlyoutHeader>
 
     <FlyoutItem Title="Bands">
         <Tab>
@@ -15,5 +26,15 @@
                 Route="Bands" />
         </Tab>
     </FlyoutItem>
+
+    <Shell.FlyoutFooter>
+        <Border Padding="10,20" StrokeThickness="0">
+            <Label
+                HorizontalTextAlignment="Center"
+                Opacity="0.5"
+                Text="{Binding Source={x:Static essentials:AppInfo.VersionString}, StringFormat='v{0}'}"
+                VerticalTextAlignment="Center" />
+        </Border>
+    </Shell.FlyoutFooter>
 
 </Shell>

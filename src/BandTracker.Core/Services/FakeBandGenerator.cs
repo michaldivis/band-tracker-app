@@ -12,6 +12,7 @@ public class FakeBandGenerator
             .StrictMode(true)
             .RuleFor(a => a.BandId, Guid.NewGuid())
             .RuleFor(a => a.Name, f => f.Company.CompanyName())
+            .RuleFor(a => a.Genre, f => f.Music.Genre())
             .RuleFor(a => a.AvatarImageUrl, f => f.Image.PicsumUrl(500, 500))
             .RuleFor(a => a.BackgroundImageUrl, f => f.Image.PicsumUrl(1920, 1080))
             .RuleFor(a => a.Releases, (f, band) => GenerateReleases(band, f.Random.Int(1, 10)));
