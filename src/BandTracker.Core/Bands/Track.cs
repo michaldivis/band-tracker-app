@@ -6,4 +6,9 @@ public class Track
 
     public string Name { get; init; } = null!;
     public TimeSpan Length { get; init; }
+
+    public override string ToString()
+    {
+        return $"{Name} - {Length}";
+    }
 }

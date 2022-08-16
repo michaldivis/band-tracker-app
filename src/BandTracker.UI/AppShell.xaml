@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:essentials="clr-namespace:Microsoft.Maui.ApplicationModel;assembly=Microsoft.Maui.Essentials"
+    xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
     xmlns:local="clr-namespace:BandTracker.UI"
     xmlns:views="clr-namespace:BandTracker.UI.Views"
     Shell.FlyoutBehavior="Flyout">
@@ -17,11 +18,35 @@
                 FontSize="Large"
                 HorizontalTextAlignment="Center"
                 Text="{x:Static essentials:AppInfo.Name}"
+                TextColor="{StaticResource Secondary}"
                 VerticalTextAlignment="Center" />
         </Border>
     </Shell.FlyoutHeader>
 
+    <FlyoutItem Title="Dashboard">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="FaSolid"
+                Glyph="{x:Static fi:FaSolid.Star}"
+                Color="{AppThemeBinding Light={StaticResource Gray900},
+                                        Dark={StaticResource White}}" />
+        </FlyoutItem.Icon>
+        <Tab>
+            <ShellContent
+                Title="Dashboard"
+                ContentTemplate="{DataTemplate views:DashboardView}"
+                Route="Dashboard" />
+        </Tab>
+    </FlyoutItem>
+
     <FlyoutItem Title="Bands">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="FaSolid"
+                Glyph="{x:Static fi:FaSolid.Music}"
+                Color="{AppThemeBinding Light={StaticResource Gray900},
+                                        Dark={StaticResource White}}" />
+        </FlyoutItem.Icon>
         <Tab>
             <ShellContent
                 Title="Bands"
@@ -33,7 +58,7 @@
     <Shell.FlyoutFooter>
         <Border
             Padding="10,20"
-            BackgroundColor="{AppThemeBinding Light={StaticResource Gray200},
+            BackgroundColor="{AppThemeBinding Light={StaticResource Gray100},
                                               Dark={StaticResource Gray900}}"
             StrokeThickness="0">
             <Label

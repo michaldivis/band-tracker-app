@@ -7,4 +7,9 @@ public class Band
     public string AvatarImageUrl { get; init; } = null!;
     public string BackgroundImageUrl { get; init; } = null!;
     public List<Release> Releases { get; init; } = new();
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }
