@@ -1,5 +1,4 @@
-﻿using BandTracker.Core.Services;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace BandTracker.UI.Views;
 public class BandsViewModel : ObservableObject
@@ -8,7 +7,8 @@ public class BandsViewModel : ObservableObject
 
 	public BandsViewModel()
 	{
-		var bands = new BandRepository().GetAll();
+		var bandsRepository = DI.Resolve<IBandRepository>();
+        var bands = bandsRepository.GetAll();
         Bands = new(bands);
 	}
 }

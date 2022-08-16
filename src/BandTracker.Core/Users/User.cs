@@ -1,4 +1,4 @@
-﻿namespace BandTracker.Core.Bands;
+﻿namespace BandTracker.Core.Users;
 public class User
 {
     private readonly List<Band> _followedBands = new();

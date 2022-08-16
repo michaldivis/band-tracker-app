@@ -1,4 +1,6 @@
-﻿namespace BandTracker.UI;
+﻿using BandTracker.UI.Setup;
+
+namespace BandTracker.UI;
 
 public static class MauiProgram
 {
@@ -13,6 +15,12 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        return builder.Build();
+        ServicesSetup.Configure(builder);
+
+        var app = builder.Build();
+
+        DI.SetProvider(app.Services);
+
+        return app;
     }
 }

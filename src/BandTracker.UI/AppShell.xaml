@@ -9,7 +9,10 @@
     Shell.FlyoutBehavior="Flyout">
 
     <Shell.FlyoutHeader>
-        <Border Padding="10,20" StrokeThickness="0">
+        <Border
+            Padding="10,20"
+            BackgroundColor="{StaticResource Primary}"
+            StrokeThickness="0">
             <Label
                 FontSize="Large"
                 HorizontalTextAlignment="Center"
@@ -28,7 +31,11 @@
     </FlyoutItem>
 
     <Shell.FlyoutFooter>
-        <Border Padding="10,20" StrokeThickness="0">
+        <Border
+            Padding="10,20"
+            BackgroundColor="{AppThemeBinding Light={StaticResource Gray200},
+                                              Dark={StaticResource Gray900}}"
+            StrokeThickness="0">
             <Label
                 HorizontalTextAlignment="Center"
                 Opacity="0.5"
