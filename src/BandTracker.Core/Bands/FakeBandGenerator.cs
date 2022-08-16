@@ -7,21 +7,23 @@ public class FakeBandGenerator
     private readonly Faker<Release> _releaseFaker;
     private readonly Faker<Track> _trackFaker;
 
+    private const string _avatarPlaceholder = "band.jpg";
+    private const string _artPlaceholder = "album.jpg";
+
     public FakeBandGenerator()
     {
         _bandFaker = new Faker<Band>()
             .RuleFor(a => a.BandId, Guid.NewGuid())
             .RuleFor(a => a.Name, f => f.Company.CompanyName())
             .RuleFor(a => a.Genre, f => f.Music.Genre())
-            .RuleFor(a => a.AvatarImageUrl, f => f.Image.PicsumUrl(500, 500))
-            .RuleFor(a => a.BackgroundImageUrl, f => f.Image.PicsumUrl(1920, 1080))
+            .RuleFor(a => a.AvatarImageUrl, f => _avatarPlaceholder)
             .RuleFor(a => a.Releases, (f, band) => GenerateReleases(band, f.Random.Int(1, 10)));
 
         _releaseFaker = new Faker<Release>()
             .RuleFor(a => a.ReleaseId, Guid.NewGuid())
             .RuleFor(a => a.Name, f => f.Commerce.ProductName())
             .RuleFor(a => a.ReleaseDate, f => f.Date.Past(10, DateTime.Now))
-            .RuleFor(a => a.ArtImageUrl, f => f.Image.PicsumUrl(500, 500))
+            .RuleFor(a => a.ArtImageUrl, f => _artPlaceholder)
             .RuleFor(a => a.Tracks, (f, release) => GenerateTracks(release, f.Random.Int(1, 15)));
 
         _trackFaker = new Faker<Track>()
