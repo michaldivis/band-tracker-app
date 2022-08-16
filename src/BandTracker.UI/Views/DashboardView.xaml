@@ -3,6 +3,7 @@
     x:Class="BandTracker.UI.Views.DashboardView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:essentials="clr-namespace:Microsoft.Maui.ApplicationModel;assembly=Microsoft.Maui.Essentials"
     xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     xmlns:skiaExtCtrls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
@@ -35,6 +36,7 @@
                 Source="guitarplayingpeople.json" />
 
             <Label
+                Margin="0,20,0,0"
                 Style="{StaticResource LabelH2}"
                 Text="Recent releases"
                 TextColor="{StaticResource PrimaryInverse}" />
@@ -91,10 +93,83 @@
                 </Button.Background>
             </Button>
 
+            <Label
+                Margin="0,20,0,0"
+                Style="{StaticResource LabelH2}"
+                Text="Upcoming shows"
+                TextColor="{StaticResource PrimaryInverse}" />
+
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding UpcomingShows}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="0,5"
+                            Padding="10"
+                            BorderColor="Transparent"
+                            HasShadow="False">
+
+                            <Frame.Background>
+                                <LinearGradientBrush>
+                                    <GradientStop Offset="0.1" Color="Transparent" />
+                                    <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
+                                </LinearGradientBrush>
+                            </Frame.Background>
+
+                            <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                                <Image
+                                    Grid.Column="0"
+                                    HeightRequest="50"
+                                    Source="{Binding Band.AvatarImageUrl}"
+                                    WidthRequest="50">
+                                    <Image.Clip>
+                                        <RoundRectangleGeometry CornerRadius="5" Rect="0,0,50,50" />
+                                    </Image.Clip>
+                                </Image>
+                                <VerticalStackLayout Grid.Column="1">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Opacity="0.5"
+                                        Text="{Binding Band.Name}"
+                                        TextColor="{StaticResource PrimaryInverse}" />
+                                    <Label TextColor="{StaticResource PrimaryInverse}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Date, StringFormat='{}{0:d}'}" />
+                                                <Span Text=" at " />
+                                                <Span FontAttributes="Bold" Text="{Binding Location}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+
+            <Button
+                FontFamily="RubikSemiBold"
+                Text="SEE UPCOMING SHOWS"
+                TextColor="{StaticResource AccentLight}">
+                <Button.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Offset="0.1" Color="Transparent" />
+                        <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
             <skiaExtCtrls:SKLottieView
                 HeightRequest="50"
                 RepeatCount="-1"
                 Source="waveform.json" />
+
+            <Label
+                Margin="10"
+                HorizontalTextAlignment="Center"
+                Opacity="0.5"
+                Text="{Binding Source={x:Static essentials:AppInfo.Version}, StringFormat='v{0}'}"
+                TextColor="{StaticResource PrimaryInverse}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

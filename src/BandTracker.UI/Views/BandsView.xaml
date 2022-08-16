@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     Title="Bands"
+    Background="{StaticResource bBackground1}"
     Shell.NavBarIsVisible="False">
 
     <ContentPage.BindingContext>
@@ -12,9 +13,20 @@
     </ContentPage.BindingContext>
 
     <CollectionView ItemsSource="{Binding Bands}">
+        <CollectionView.Header>
+            <Label
+                Margin="10,20,10,0"
+                Style="{StaticResource LabelH1}"
+                Text="Bands" />
+        </CollectionView.Header>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Frame>
+                <Frame
+                    Margin="10,5"
+                    Padding="10"
+                    Background="{StaticResource bBackground3}"
+                    BorderColor="Transparent"
+                    HasShadow="False">
                     <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
                         <Image
                             Grid.Column="0"

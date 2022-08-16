@@ -6,4 +6,5 @@ public interface IBandRepository
     Result<Release> FindReleaseById(Guid releaseId);
     IReadOnlyList<Band> GetAll();
     IReadOnlyList<Release> GetRecentReleases(int amount);
+    IReadOnlyList<Show> GetUpcomingShows(int amount);
 }

@@ -6,6 +6,7 @@ public class Band
     public string Genre { get; init; } = null!;
     public string AvatarImageUrl { get; init; } = null!;
     public List<Release> Releases { get; init; } = new();
+    public List<Show> Shows { get; init; } = new();
 
     public override string ToString()
     {

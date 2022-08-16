@@ -3,11 +3,13 @@ public class BandRepository : IBandRepository
 {
     private readonly List<Band> _bands;
     private readonly List<Release> _releases;
+    private readonly List<Show> _shows;
 
     public BandRepository()
     {
         _bands = new FakeBandGenerator().Generate(30);
         _releases = _bands.SelectMany(a => a.Releases).ToList();
+        _shows = _bands.SelectMany(a => a.Shows).ToList();
     }
 
     public IReadOnlyList<Band> GetAll()
@@ -43,6 +45,14 @@ public class BandRepository : IBandRepository
     {
         return _releases
             .OrderByDescending(a => a.ReleaseDate)
+            .Take(amount)
+            .ToList();
+    }
+
+    public IReadOnlyList<Show> GetUpcomingShows(int amount)
+    {
+        return _shows
+            .OrderBy(a => a.Date)
             .Take(amount)
             .ToList();
     }
