@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BandTracker.Core", "src\BandTracker.Core\BandTracker.Core.csproj", "{8F782BA2-AB60-497C-8B48-FF5DC43F8DC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BandTracker.UI", "src\BandTracker.UI\BandTracker.UI.csproj", "{C38421F1-9E63-4B78-8BAE-F1784D3964C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F782BA2-AB60-497C-8B48-FF5DC43F8DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F782BA2-AB60-497C-8B48-FF5DC43F8DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F782BA2-AB60-497C-8B48-FF5DC43F8DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F782BA2-AB60-497C-8B48-FF5DC43F8DC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C38421F1-9E63-4B78-8BAE-F1784D3964C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C38421F1-9E63-4B78-8BAE-F1784D3964C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C38421F1-9E63-4B78-8BAE-F1784D3964C7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C38421F1-9E63-4B78-8BAE-F1784D3964C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C38421F1-9E63-4B78-8BAE-F1784D3964C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C38421F1-9E63-4B78-8BAE-F1784D3964C7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5D35C6D-833A-4336-AE15-ED2B8116D555}
+	EndGlobalSection
+EndGlobal
