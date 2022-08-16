@@ -8,7 +8,7 @@
     <Color x:Key="Accent">#17B794</Color>
     <Color x:Key="AccentAlt">#149f9f</Color>
     <Color x:Key="AccentInverse">#fff</Color>
-    
+
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
