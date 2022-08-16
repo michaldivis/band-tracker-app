@@ -5,39 +5,42 @@ namespace BandTracker.Core.Services;
 public class FakeBandGenerator
 {
     private readonly Faker<Band> _bandFaker;
-    private readonly Faker<Release> _releaseFaker;
-    private readonly Faker<Track> _trackFaker;
 
     public FakeBandGenerator()
     {
         _bandFaker = new Faker<Band>()
             .StrictMode(true)
-            .RuleFor(a => a.Name, f => f.Internet.UserName())
-            .RuleFor(a => a.AvatarImageUrl, f => f.Internet.Avatar())
+            .RuleFor(a => a.BandId, Guid.NewGuid())
+            .RuleFor(a => a.Name, f => f.Company.CompanyName())
+            .RuleFor(a => a.AvatarImageUrl, f => f.Image.PicsumUrl(500, 500))
             .RuleFor(a => a.BackgroundImageUrl, f => f.Image.PicsumUrl(1920, 1080))
-            .RuleFor(a => a.Releases, f => GenerateReleases(f.Random.Int(1, 10)));
-
-        _releaseFaker = new Faker<Release>()
-            .RuleFor(a => a.Name, f => f.Commerce.ProductName())
-            .RuleFor(a => a.Tracks, f => GenerateTracks(f.Random.Int(1, 15)));
-
-        _trackFaker = new Faker<Track>()
-            .RuleFor(a => a.Name, f => f.Commerce.ProductName())
-            .RuleFor(a => a.Length, f => TimeSpan.FromSeconds(f.Random.Int(60, 300)));
+            .RuleFor(a => a.Releases, (f, band) => GenerateReleases(band, f.Random.Int(1, 10)));
     }
 
-    public IEnumerable<Band> Generate(int amount)
+    public List<Band> Generate(int amount)
     {
         return _bandFaker.Generate(amount);
     }
 
-    private IEnumerable<Release> GenerateReleases(int amount)
+    private List<Release> GenerateReleases(Band author, int amount)
     {
-        return _releaseFaker.Generate(amount);
+        return new Faker<Release>()
+            .StrictMode(true)
+            .RuleFor(a => a.ReleaseId, Guid.NewGuid())
+            .RuleFor(a => a.Author, author)
+            .RuleFor(a => a.Name, f => f.Commerce.ProductName())
+            .RuleFor(a => a.Tracks, (f, release) => GenerateTracks(release, f.Random.Int(1, 15)))
+            .Generate(amount);
     }
 
-    private IEnumerable<Track> GenerateTracks(int amount)
+    private List<Track> GenerateTracks(Release release, int amount)
     {
-        return _trackFaker.Generate(amount);
+        return new Faker<Track>()
+            .StrictMode(true)
+            .RuleFor(a => a.TrackId, Guid.NewGuid())
+            .RuleFor(a => a.Release, release)
+            .RuleFor(a => a.Name, f => f.Commerce.ProductName())
+            .RuleFor(a => a.Length, f => TimeSpan.FromSeconds(f.Random.Int(60, 300)))
+            .Generate(amount);
     }
 }

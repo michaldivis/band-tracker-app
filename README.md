@@ -10,3 +10,5 @@ A demo .NET MAUI app
 ## Views
 - [ ] News feed (new releases and shows)
 - [ ] All bands (searchable)
+- [ ] Band detail
+- [ ] Release detail

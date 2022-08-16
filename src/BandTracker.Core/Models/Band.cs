@@ -1,2 +1,9 @@
 ﻿namespace BandTracker.Core.Models;
-public record Band(string Name, string AvatarImageUrl, string BackgroundImageUrl, IEnumerable<Release> Releases);
+public class Band
+{
+    public Guid BandId { get; init; }
+    public string Name { get; init; } = null!;
+    public string AvatarImageUrl { get; init; } = null!;
+    public string BackgroundImageUrl { get; init; } = null!;
+    public List<Release> Releases { get; init; } = new();
+}
