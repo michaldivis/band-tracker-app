@@ -2,7 +2,7 @@
 
 namespace BandTracker.Core.Users;
 
-internal class FakeUserGenerator
+public class FakeUserGenerator
 {
     private readonly Faker<User> _faker;
 

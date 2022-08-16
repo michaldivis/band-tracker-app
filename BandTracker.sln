@@ -3,14 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BandTracker.Core", "src\BandTracker.Core\BandTracker.Core.csproj", "{8F782BA2-AB60-497C-8B48-FF5DC43F8DC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BandTracker.Core", "src\BandTracker.Core\BandTracker.Core.csproj", "{8F782BA2-AB60-497C-8B48-FF5DC43F8DC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BandTracker.UI", "src\BandTracker.UI\BandTracker.UI.csproj", "{C38421F1-9E63-4B78-8BAE-F1784D3964C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BandTracker.UI", "src\BandTracker.UI\BandTracker.UI.csproj", "{C38421F1-9E63-4B78-8BAE-F1784D3964C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D86A4818-D357-4CA4-8678-01D062972AA8}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BandTracker.Core.Tests", "tests\BandTracker.Core.Tests\BandTracker.Core.Tests.csproj", "{B6944428-A59E-4470-BE8C-2DD6E48349DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0DB197D0-EF8A-4356-87FB-F76706A68A51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AD017E40-F5D2-485F-B2C2-3240A7ECA321}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,9 +34,18 @@ Global
 		{C38421F1-9E63-4B78-8BAE-F1784D3964C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C38421F1-9E63-4B78-8BAE-F1784D3964C7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C38421F1-9E63-4B78-8BAE-F1784D3964C7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B6944428-A59E-4470-BE8C-2DD6E48349DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6944428-A59E-4470-BE8C-2DD6E48349DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6944428-A59E-4470-BE8C-2DD6E48349DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6944428-A59E-4470-BE8C-2DD6E48349DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F782BA2-AB60-497C-8B48-FF5DC43F8DC3} = {0DB197D0-EF8A-4356-87FB-F76706A68A51}
+		{C38421F1-9E63-4B78-8BAE-F1784D3964C7} = {0DB197D0-EF8A-4356-87FB-F76706A68A51}
+		{B6944428-A59E-4470-BE8C-2DD6E48349DF} = {AD017E40-F5D2-485F-B2C2-3240A7ECA321}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A5D35C6D-833A-4336-AE15-ED2B8116D555}

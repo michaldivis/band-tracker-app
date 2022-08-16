@@ -2,7 +2,7 @@
 public class Release
 {
     public Guid ReleaseId { get; init; }
-    public Band Author { get; init; } = null!;
+    public Band Author { get; set; } = null!;
 
     public string Name { get; init; } = null!;
     public DateTime ReleaseDate { get; init; }

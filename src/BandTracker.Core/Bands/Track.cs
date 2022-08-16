@@ -2,7 +2,7 @@
 public class Track
 {
     public Guid TrackId { get; init; }
-    public Release Release { get; init; } = null!;
+    public Release Release { get; set; } = null!;
 
     public string Name { get; init; } = null!;
     public TimeSpan Length { get; init; }
