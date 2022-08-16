@@ -18,7 +18,7 @@
                 FontSize="Large"
                 HorizontalTextAlignment="Center"
                 Text="{x:Static essentials:AppInfo.Name}"
-                TextColor="{StaticResource Secondary}"
+                TextColor="{StaticResource PrimaryInverse}"
                 VerticalTextAlignment="Center" />
         </Border>
     </Shell.FlyoutHeader>

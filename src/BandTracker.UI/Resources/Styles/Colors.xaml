@@ -2,18 +2,27 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">#17B794</Color>
-    <Color x:Key="Secondary">#DFD8F7</Color>
-    <Color x:Key="Tertiary">#149f9f</Color>
+    <Color x:Key="Primary">#3a3399</Color>
+    <Color x:Key="PrimaryAlt">#333399</Color>
+    <Color x:Key="PrimaryInverse">#fff</Color>
+    <Color x:Key="Accent">#17B794</Color>
+    <Color x:Key="AccentAlt">#149f9f</Color>
+    <Color x:Key="AccentInverse">#fff</Color>
+    
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
-    <Color x:Key="Gray100">#e3e3e8</Color>
-    <Color x:Key="Gray200">#c7c7d1</Color>
-    <Color x:Key="Gray300">#acabba</Color>
-    <Color x:Key="Gray400">#9e9daf</Color>
-    <Color x:Key="Gray500">#68677e</Color>
-    <Color x:Key="Gray600">#363366</Color>
-    <Color x:Key="Gray900">#242244</Color>
-    <Color x:Key="Gray950">#141326</Color>
+    <Color x:Key="Gray100">#E1E1E1</Color>
+    <Color x:Key="Gray200">#C8C8C8</Color>
+    <Color x:Key="Gray300">#ACACAC</Color>
+    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray600">#404040</Color>
+    <Color x:Key="Gray900">#212121</Color>
+    <Color x:Key="Gray950">#141414</Color>
+
+    <SolidColorBrush x:Key="bText" Color="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}" />
+    <SolidColorBrush x:Key="bBackground1" Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
+    <SolidColorBrush x:Key="bBackground2" Color="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}" />
+    <SolidColorBrush x:Key="bBackground3" Color="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray600}}" />
 
 </ResourceDictionary>
