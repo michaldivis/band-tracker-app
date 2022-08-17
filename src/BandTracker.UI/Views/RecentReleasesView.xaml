@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:bands="clr-namespace:BandTracker.Core.Bands;assembly=BandTracker.Core"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
+    xmlns:skiaExtCtrls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Title="Recent Releases"
     x:DataType="local:RecentReleasesViewModel">
 
@@ -17,11 +18,17 @@
 
     <CollectionView ItemsSource="{Binding RecentReleases}">
         <CollectionView.Header>
-            <Label
-                Margin="10,20,10,0"
-                Style="{StaticResource LabelH1}"
-                Text="Recent Releases"
-                TextColor="{StaticResource cText}" />
+            <VerticalStackLayout>
+                <skiaExtCtrls:SKLottieView
+                    HeightRequest="200"
+                    RepeatCount="-1"
+                    Source="astronaut.json" />
+                <Label
+                    Margin="10,20,10,0"
+                    Style="{StaticResource LabelH1}"
+                    Text="Recent Releases"
+                    TextColor="{StaticResource cText}" />
+            </VerticalStackLayout>
         </CollectionView.Header>
         <CollectionView.Footer>
             <BoxView HeightRequest="5" Color="Transparent" />
