@@ -37,7 +37,7 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="bands:FullShow">
                 <Frame
-                    Margin="0,5"
+                    Margin="10,5"
                     Padding="10"
                     BorderColor="Transparent"
                     HasShadow="False">
