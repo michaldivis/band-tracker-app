@@ -18,6 +18,8 @@ public class FakeBandGenerator
             .RuleFor(a => a.Name, f => f.Company.CompanyName())
             .RuleFor(a => a.Genre, f => f.Music.Genre())
             .RuleFor(a => a.AvatarImageUrl, f => _avatarPlaceholder)
+            .RuleFor(a => a.Followers, f => f.Random.Int(50, 10_000))
+            .RuleFor(a => a.MonthlyListeners, f => f.Random.Int(50, 10_000))
             .RuleFor(a => a.Releases, (f, band) => GenerateReleases(band, f.Random.Int(1, 10)))
             .RuleFor(a => a.Shows, (f, band) => GenerateShows(band, f.Random.Int(1, 10)));
 

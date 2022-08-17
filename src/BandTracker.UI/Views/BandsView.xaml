@@ -6,8 +6,14 @@
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     Title="Bands"
-    Background="{StaticResource bBackground1}"
     Shell.NavBarIsVisible="False">
+
+    <ContentPage.Background>
+        <LinearGradientBrush>
+            <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
+            <GradientStop Offset="1.0" Color="{StaticResource PrimaryAlt}" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
     <ContentPage.BindingContext>
         <local:BandsViewModel />
@@ -19,27 +25,24 @@
                 <Label
                     Margin="10,20,10,0"
                     Style="{StaticResource LabelH1}"
-                    Text="Bands" />
+                    Text="Bands"
+                    TextColor="{StaticResource PrimaryInverse}" />
 
                 <dxe:FilterChipGroup
                     x:Name="fcgGenres"
                     BackgroundColor="Transparent"
-                    ChipBackgroundColor="{AppThemeBinding Light={StaticResource Gray100},
-                                                          Dark={StaticResource Gray950}}"
-                    ChipBorderColor="{AppThemeBinding Light={StaticResource Gray300},
-                                                      Dark={StaticResource Gray600}}"
-                    ChipCheckIconColor="{StaticResource PrimaryInverse}"
-                    ChipIconColor="{AppThemeBinding Light={StaticResource Black},
-                                                    Dark={StaticResource Black}}"
-                    ChipPressedBorderColor="{StaticResource PrimaryAlt}"
-                    ChipPressedIconColor="{StaticResource PrimaryAlt}"
-                    ChipPressedTextColor="{StaticResource PrimaryAlt}"
-                    ChipSelectedBackgroundColor="{DynamicResource Primary}"
-                    ChipSelectedBorderColor="{StaticResource PrimaryAlt}"
-                    ChipSelectedIconColor="{StaticResource PrimaryInverse}"
-                    ChipSelectedTextColor="{StaticResource PrimaryInverse}"
-                    ChipTextColor="{AppThemeBinding Light={StaticResource Black},
-                                                    Dark={StaticResource Black}}"
+                    ChipBackgroundColor="{StaticResource PrimaryDark}"
+                    ChipBorderColor="{StaticResource PrimaryLight}"
+                    ChipCheckIconColor="{StaticResource Primary}"
+                    ChipIconColor="{StaticResource PrimaryInverse}"
+                    ChipPressedBorderColor="{StaticResource AccentAlt}"
+                    ChipPressedIconColor="{StaticResource AccentAlt}"
+                    ChipPressedTextColor="{StaticResource AccentAlt}"
+                    ChipSelectedBackgroundColor="{DynamicResource Accent}"
+                    ChipSelectedBorderColor="{StaticResource AccentAlt}"
+                    ChipSelectedIconColor="{StaticResource AccentInverse}"
+                    ChipSelectedTextColor="{StaticResource AccentInverse}"
+                    ChipTextColor="{StaticResource PrimaryInverse}"
                     ItemsSource="{Binding Genres}"
                     SelectionChanged="fcgGenres_SelectionChanged" />
 
@@ -53,9 +56,16 @@
                 <Frame
                     Margin="10,5"
                     Padding="10"
-                    Background="{StaticResource bBackground2}"
                     BorderColor="Transparent"
                     HasShadow="False">
+
+                    <Frame.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
+                            <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
                     <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
                         <Image
                             Grid.Column="0"
@@ -70,8 +80,15 @@
                             </Image.Clip>
                         </Image>
                         <VerticalStackLayout Grid.Column="1">
-                            <Label Text="{Binding Name}" />
-                            <Label Opacity="0.5" Text="{Binding Genre}" />
+                            <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryInverse}" />
+                            <Label
+                                Opacity="0.5"
+                                Text="{Binding Genre}"
+                                TextColor="{StaticResource PrimaryInverse}" />
+                            <Label
+                                Opacity="0.5"
+                                Text="{Binding Followers, StringFormat='{0} followers'}"
+                                TextColor="{StaticResource PrimaryInverse}" />
                         </VerticalStackLayout>
                     </Grid>
                 </Frame>
