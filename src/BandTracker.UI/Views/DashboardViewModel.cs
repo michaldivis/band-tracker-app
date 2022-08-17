@@ -2,7 +2,7 @@
 
 namespace BandTracker.UI.Views;
 
-public class DashboardViewModel : ObservableObject
+public partial class DashboardViewModel : ObservableObject
 {
     public ObservableCollection<Release> RecentReleases { get; }
     public ObservableCollection<Show> UpcomingShows { get; }
@@ -16,5 +16,17 @@ public class DashboardViewModel : ObservableObject
 
         var upcomingShows = bandsRepository.GetUpcomingShows(5);
         UpcomingShows = new(upcomingShows);
+    }
+
+    [RelayCommand]
+    private void GoToRecentReleases()
+    {
+
+    }
+
+    [RelayCommand]
+    private void GoToUpcomingShows()
+    {
+
     }
 }

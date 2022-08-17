@@ -14,27 +14,38 @@
 
     <CollectionView ItemsSource="{Binding Bands}">
         <CollectionView.Header>
-            <Label
-                Margin="10,20,10,0"
-                Style="{StaticResource LabelH1}"
-                Text="Bands" />
+            <VerticalStackLayout>
+                <Label
+                    Margin="10,20,10,0"
+                    Style="{StaticResource LabelH1}"
+                    Text="Bands" />
+
+                <HorizontalStackLayout Padding="10" Spacing="10">
+                    <Button Text="Metal" />
+                    <Button Text="Djent" />
+                    <Button Text="Rock" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
         </CollectionView.Header>
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Frame
                     Margin="10,5"
                     Padding="10"
-                    Background="{StaticResource bBackground3}"
+                    Background="{StaticResource bBackground2}"
                     BorderColor="Transparent"
                     HasShadow="False">
                     <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
                         <Image
                             Grid.Column="0"
-                            HeightRequest="50"
+                            HeightRequest="60"
                             Source="{Binding AvatarImageUrl}"
-                            WidthRequest="50">
+                            WidthRequest="60">
                             <Image.Clip>
-                                <RoundRectangleGeometry CornerRadius="5" Rect="0,0,50,50" />
+                                <EllipseGeometry
+                                    Center="30,30"
+                                    RadiusX="30"
+                                    RadiusY="30" />
                             </Image.Clip>
                         </Image>
                         <VerticalStackLayout Grid.Column="1">

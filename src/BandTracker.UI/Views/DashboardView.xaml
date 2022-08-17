@@ -52,7 +52,7 @@
 
                             <Frame.Background>
                                 <LinearGradientBrush>
-                                    <GradientStop Offset="0.1" Color="Transparent" />
+                                    <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
                                     <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
                                 </LinearGradientBrush>
                             </Frame.Background>
@@ -60,11 +60,11 @@
                             <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
                                 <Image
                                     Grid.Column="0"
-                                    HeightRequest="50"
+                                    HeightRequest="60"
                                     Source="{Binding ArtImageUrl}"
-                                    WidthRequest="50">
+                                    WidthRequest="60">
                                     <Image.Clip>
-                                        <RoundRectangleGeometry CornerRadius="5" Rect="0,0,50,50" />
+                                        <RoundRectangleGeometry CornerRadius="5" Rect="0,0,60,60" />
                                     </Image.Clip>
                                 </Image>
                                 <VerticalStackLayout Grid.Column="1">
@@ -82,12 +82,13 @@
             </VerticalStackLayout>
 
             <Button
+                Command="{Binding GoToRecentReleasesCommand}"
                 FontFamily="RubikSemiBold"
                 Text="SEE RECENT RELEASES"
                 TextColor="{StaticResource AccentLight}">
                 <Button.Background>
                     <LinearGradientBrush>
-                        <GradientStop Offset="0.1" Color="Transparent" />
+                        <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
                         <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
                     </LinearGradientBrush>
                 </Button.Background>
@@ -110,7 +111,7 @@
 
                             <Frame.Background>
                                 <LinearGradientBrush>
-                                    <GradientStop Offset="0.1" Color="Transparent" />
+                                    <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
                                     <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
                                 </LinearGradientBrush>
                             </Frame.Background>
@@ -118,11 +119,14 @@
                             <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
                                 <Image
                                     Grid.Column="0"
-                                    HeightRequest="50"
+                                    HeightRequest="60"
                                     Source="{Binding Band.AvatarImageUrl}"
-                                    WidthRequest="50">
+                                    WidthRequest="60">
                                     <Image.Clip>
-                                        <RoundRectangleGeometry CornerRadius="5" Rect="0,0,50,50" />
+                                        <EllipseGeometry
+                                            Center="30,30"
+                                            RadiusX="30"
+                                            RadiusY="30" />
                                     </Image.Clip>
                                 </Image>
                                 <VerticalStackLayout Grid.Column="1">
@@ -148,12 +152,13 @@
             </VerticalStackLayout>
 
             <Button
+                Command="{Binding GoToUpcomingShowsCommand}"
                 FontFamily="RubikSemiBold"
                 Text="SEE UPCOMING SHOWS"
                 TextColor="{StaticResource AccentLight}">
                 <Button.Background>
                     <LinearGradientBrush>
-                        <GradientStop Offset="0.1" Color="Transparent" />
+                        <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
                         <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
                     </LinearGradientBrush>
                 </Button.Background>
