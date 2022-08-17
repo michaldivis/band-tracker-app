@@ -1,4 +1,5 @@
 ﻿using BandTracker.UI.Setup;
+using CommunityToolkit.Maui;
 using DevExpress.Maui;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
@@ -11,6 +12,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .UseDevExpress()
             .UseSkiaSharp()
             .ConfigureFonts(fonts =>

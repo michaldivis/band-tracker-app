@@ -41,7 +41,7 @@
 
             <VerticalStackLayout BindableLayout.ItemsSource="{Binding RecentReleases}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="bands:Release">
+                    <DataTemplate x:DataType="bands:FullRelease">
                         <Frame
                             Margin="0,5"
                             Padding="10"
@@ -58,6 +58,7 @@
                             <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
                                 <Image
                                     Grid.Column="0"
+                                    Aspect="AspectFill"
                                     HeightRequest="60"
                                     Source="{Binding ArtImageUrl}"
                                     WidthRequest="60">
@@ -69,7 +70,7 @@
                                     <Label
                                         FontAttributes="Bold"
                                         Opacity="0.5"
-                                        Text="{Binding Author.Name}"
+                                        Text="{Binding ArtistName}"
                                         TextColor="{StaticResource PrimaryInverse}" />
                                     <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryInverse}" />
                                 </VerticalStackLayout>
@@ -100,7 +101,7 @@
 
             <VerticalStackLayout BindableLayout.ItemsSource="{Binding UpcomingShows}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="bands:Show">
+                    <DataTemplate x:DataType="bands:FullShow">
                         <Frame
                             Margin="0,5"
                             Padding="10"
@@ -117,8 +118,9 @@
                             <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
                                 <Image
                                     Grid.Column="0"
+                                    Aspect="AspectFill"
                                     HeightRequest="60"
-                                    Source="{Binding Band.AvatarImageUrl}"
+                                    Source="{Binding ArtistAvatarImageUrl}"
                                     WidthRequest="60">
                                     <Image.Clip>
                                         <EllipseGeometry
@@ -130,15 +132,14 @@
                                 <VerticalStackLayout Grid.Column="1">
                                     <Label
                                         FontAttributes="Bold"
-                                        Opacity="0.5"
-                                        Text="{Binding Band.Name}"
+                                        Text="{Binding ArtistName}"
                                         TextColor="{StaticResource PrimaryInverse}" />
-                                    <Label TextColor="{StaticResource PrimaryInverse}">
+                                    <Label Opacity="0.5" TextColor="{StaticResource PrimaryInverse}">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Date, StringFormat='{}{0:d}'}" />
-                                                <Span Text=" at " />
-                                                <Span FontAttributes="Bold" Text="{Binding Location}" />
+                                                <Span FontFamily="RubikLight" Text="{Binding Date, StringFormat='{}{0:d}'}" />
+                                                <Span FontFamily="RubikLight" Text=" at " />
+                                                <Span Text="{Binding Location}" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>

@@ -14,7 +14,7 @@ public partial class BandsViewModel : VmBase
 
         Bands = new(_allBands);
 
-        Genres.ReplaceRange(_allBands.Select(a => a.Genre).Distinct());
+        Genres.ReplaceRange(_allBands.SelectMany(a => a.Genres).Distinct());
     }
 
     [RelayCommand]
@@ -26,7 +26,7 @@ public partial class BandsViewModel : VmBase
             return;
         }
 
-        var filteredBands = _allBands.Where(a => genres.Contains(a.Genre));
+        var filteredBands = _allBands.Where(a => genres.Intersect(a.Genres).Any());
         Bands.ReplaceRange(filteredBands);
     }
 

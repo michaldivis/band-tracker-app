@@ -1,15 +1,30 @@
-﻿namespace BandTracker.Core.Bands;
+﻿using Bogus;
+using System.Text.Json;
+
+namespace BandTracker.Core.Bands;
 public class BandRepository : IBandRepository
 {
+    private readonly Faker<Show> _showFaker;
+
     private readonly List<Band> _bands;
-    private readonly List<Release> _releases;
-    private readonly List<Show> _shows;
 
     public BandRepository()
     {
-        _bands = new FakeBandGenerator().Generate(30);
-        _releases = _bands.SelectMany(a => a.Releases).ToList();
-        _shows = _bands.SelectMany(a => a.Shows).ToList();
+        _showFaker = new Faker<Show>()
+            .RuleFor(a => a.ShowId, Guid.NewGuid())
+            .RuleFor(a => a.Location, f => $"{f.Address.City()}, {f.Address.Country()}")
+            .RuleFor(a => a.Date, f => f.Date.Future());
+
+        var bands = JsonSerializer.Deserialize<List<Band>>(RawBands.Json);
+
+        var random = new Random();
+        foreach (var band in bands)
+        {
+            var shows = _showFaker.Generate(random.Next(5));
+            band.Shows.AddRange(shows);
+        }
+
+        _bands = bands;     
     }
 
     public IReadOnlyList<Band> GetAll()
@@ -17,41 +32,38 @@ public class BandRepository : IBandRepository
         return _bands;
     }
 
-    public Result<Band> FindBandById(Guid bandId)
+    public IReadOnlyList<FullRelease> GetRecentReleases(int amount)
     {
-        var band = _bands.FirstOrDefault(a => a.BandId == bandId);
-
-        if (band is null)
-        {
-            return Result.Fail("Band with this ID was not found");
-        }
-
-        return band;
-    }
-
-    public Result<Release> FindReleaseById(Guid releaseId)
-    {
-        var release = _releases.FirstOrDefault(a => a.ReleaseId == releaseId);
-
-        if (release is null)
-        {
-            return Result.Fail("Release with this ID was not found");
-        }
-
-        return release;
-    }
-
-    public IReadOnlyList<Release> GetRecentReleases(int amount)
-    {
-        return _releases
+        return _bands
+            .SelectMany(a => a.Releases
+                .Select(x => new FullRelease
+                {
+                    ArtistName = a.Name,
+                    ArtistAvatarImageUrl = a.AvatarImageUrl,
+                    AlbumId = x.AlbumId,
+                    ArtImageUrl = x.ArtImageUrl,
+                    Name = x.Name,
+                    ReleaseDate = x.ReleaseDate,
+                    ReleaseType = x.ReleaseType,
+                    Tracks = x.Tracks
+                }))
             .OrderByDescending(a => a.ReleaseDate)
             .Take(amount)
             .ToList();
     }
 
-    public IReadOnlyList<Show> GetUpcomingShows(int amount)
+    public IReadOnlyList<FullShow> GetUpcomingShows(int amount)
     {
-        return _shows
+        return _bands
+            .SelectMany(a => a.Shows
+                .Select(x => new FullShow
+                {
+                    ArtistName = a.Name,
+                    ArtistAvatarImageUrl = a.AvatarImageUrl,
+                    ShowId = x.ShowId,
+                    Date = x.Date,
+                    Location = x.Location
+                }))
             .OrderBy(a => a.Date)
             .Take(amount)
             .ToList();

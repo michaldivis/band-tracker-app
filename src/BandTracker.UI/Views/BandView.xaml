@@ -3,20 +3,208 @@
     x:Class="BandTracker.UI.Views.BandView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bands="clr-namespace:BandTracker.Core.Bands;assembly=BandTracker.Core"
+    xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="{Binding Band.Name}"
-    x:DataType="local:BandViewModel">
-    <ScrollView>
-        <VerticalStackLayout>
-            <Image
-                Aspect="AspectFill"
-                HeightRequest="200"
-                HorizontalOptions="FillAndExpand"
-                Source="{Binding Band.AvatarImageUrl}" />
-            <Label Text="{Binding Band.Name}" />
-            <Label Text="{Binding Band.Genre}" />
-            <Label Text="{Binding Band.Followers}" />
-            <Label Text="{Binding Band.MonthlyListeners}" />
-        </VerticalStackLayout>
-    </ScrollView>
+    x:DataType="local:BandViewModel"
+    BackgroundColor="{StaticResource cBackground}">
+
+    <Grid>
+        <Image
+            Aspect="AspectFill"
+            HorizontalOptions="FillAndExpand"
+            Source="{Binding Band.AvatarImageUrl}"
+            VerticalOptions="Start" />
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="5">
+                <BoxView HeightRequest="200" Color="Transparent" />
+
+                <Label
+                    Margin="10,0"
+                    Style="{StaticResource LabelH1}"
+                    Text="{Binding Band.Name}"
+                    TextColor="{StaticResource cText}">
+                    <Label.Shadow>
+                        <Shadow
+                            Brush="#000"
+                            Opacity="0.5"
+                            Radius="{OnPlatform Default=20,
+                                                iOS=10}"
+                            Offset="{OnPlatform Default='10,10',
+                                                iOS='5,5'}" />
+                    </Label.Shadow>
+                </Label>
+
+                <Frame
+                    BorderColor="{StaticResource cBackground}"
+                    CornerRadius="20"
+                    HasShadow="False">
+
+                    <Frame.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Offset="0.1" Color="{StaticResource cBackground}" />
+                            <GradientStop Offset="1.0" Color="{StaticResource cBackgroundDark}" />
+                        </LinearGradientBrush>
+                    </Frame.Background>
+
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label TextColor="{StaticResource cText}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontFamily="RubikLight" Text="Genres: " />
+                                    <Span Text="{Binding Band.Genres, Converter={toolkit:ListToStringConverter Separator=', '}}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label
+                            FontFamily="RubikSemiBold"
+                            Text="{Binding Band.Followers, StringFormat='{}{0:n0} followers'}"
+                            TextColor="{StaticResource cText}" />
+
+                        <Button HorizontalOptions="Start" Text="Follow" />
+
+                        <Label
+                            Margin="0,20,0,0"
+                            Style="{StaticResource LabelH2}"
+                            Text="Albums"
+                            TextColor="{StaticResource cText}" />
+
+                        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Band.Albums}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="bands:Release">
+                                    <Frame
+                                        Margin="0,5"
+                                        Padding="10"
+                                        BorderColor="Transparent"
+                                        HasShadow="False">
+
+                                        <Frame.Background>
+                                            <LinearGradientBrush>
+                                                <GradientStop Offset="0.1" Color="{StaticResource cBackground}" />
+                                                <GradientStop Offset="1.0" Color="{StaticResource cBackgroundLight}" />
+                                            </LinearGradientBrush>
+                                        </Frame.Background>
+
+                                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                                            <Image
+                                                Grid.Column="0"
+                                                Aspect="AspectFill"
+                                                HeightRequest="60"
+                                                Source="{Binding ArtImageUrl}"
+                                                WidthRequest="60">
+                                                <Image.Clip>
+                                                    <RoundRectangleGeometry CornerRadius="5" Rect="0,0,60,60" />
+                                                </Image.Clip>
+                                            </Image>
+                                            <VerticalStackLayout Grid.Column="1">
+                                                <Label Text="{Binding Name}" TextColor="{StaticResource cText}" />
+                                                <Label
+                                                    Opacity="0.5"
+                                                    Text="{Binding ReleaseDate, StringFormat='{}{0:yyyy}'}"
+                                                    TextColor="{StaticResource cText}" />
+                                                <Label
+                                                    Opacity="0.5"
+                                                    Text="{Binding Tracks.Count, StringFormat='{0} tracks'}"
+                                                    TextColor="{StaticResource cText}" />
+                                            </VerticalStackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+
+                        <Label
+                            Margin="0,20,0,0"
+                            Style="{StaticResource LabelH2}"
+                            Text="Singles"
+                            TextColor="{StaticResource cText}" />
+
+                        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Band.Singles}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="bands:Release">
+                                    <Frame
+                                        Margin="0,5"
+                                        Padding="10"
+                                        BorderColor="Transparent"
+                                        HasShadow="False">
+
+                                        <Frame.Background>
+                                            <LinearGradientBrush>
+                                                <GradientStop Offset="0.1" Color="{StaticResource cBackground}" />
+                                                <GradientStop Offset="1.0" Color="{StaticResource cBackgroundLight}" />
+                                            </LinearGradientBrush>
+                                        </Frame.Background>
+
+                                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                                            <Image
+                                                Grid.Column="0"
+                                                Aspect="AspectFill"
+                                                HeightRequest="60"
+                                                Source="{Binding ArtImageUrl}"
+                                                WidthRequest="60">
+                                                <Image.Clip>
+                                                    <RoundRectangleGeometry CornerRadius="5" Rect="0,0,60,60" />
+                                                </Image.Clip>
+                                            </Image>
+                                            <VerticalStackLayout Grid.Column="1">
+                                                <Label Text="{Binding Name}" TextColor="{StaticResource cText}" />
+                                                <Label
+                                                    Opacity="0.5"
+                                                    Text="{Binding ReleaseDate, StringFormat='{}{0:yyyy}'}"
+                                                    TextColor="{StaticResource cText}" />
+                                            </VerticalStackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+
+                        <Label
+                            Margin="0,20,0,0"
+                            Style="{StaticResource LabelH2}"
+                            Text="Shows"
+                            TextColor="{StaticResource PrimaryInverse}" />
+
+                        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Band.Shows}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="bands:Show">
+                                    <Frame
+                                        Margin="0,5"
+                                        Padding="10"
+                                        BorderColor="Transparent"
+                                        HasShadow="False">
+
+                                        <Frame.Background>
+                                            <LinearGradientBrush>
+                                                <GradientStop Offset="0.1" Color="{StaticResource cBackground}" />
+                                                <GradientStop Offset="1.0" Color="{StaticResource cBackgroundLight}" />
+                                            </LinearGradientBrush>
+                                        </Frame.Background>
+
+                                        <Label TextColor="{StaticResource cText}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontFamily="FaSolid" Text="{x:Static fi:FaSolid.MapMarker}" />
+                                                    <Span Text="  " />
+                                                    <Span FontFamily="RubikLight" Text="{Binding Date, StringFormat='{}{0:d}'}" />
+                                                    <Span FontFamily="RubikLight" Text=" at " />
+                                                    <Span Text="{Binding Location}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
 </ContentPage>

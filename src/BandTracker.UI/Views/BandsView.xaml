@@ -6,6 +6,7 @@
     xmlns:bands="clr-namespace:BandTracker.Core.Bands;assembly=BandTracker.Core"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Bands"
     x:DataType="local:BandsViewModel"
     Shell.NavBarIsVisible="False">
@@ -73,6 +74,7 @@
                     <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
                         <Image
                             Grid.Column="0"
+                            Aspect="AspectFill"
                             HeightRequest="60"
                             Source="{Binding AvatarImageUrl}"
                             WidthRequest="60">
@@ -87,11 +89,12 @@
                             <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryInverse}" />
                             <Label
                                 Opacity="0.5"
-                                Text="{Binding Genre}"
+                                Text="{Binding Genres, Converter={toolkit:ListToStringConverter Separator=', '}}"
                                 TextColor="{StaticResource PrimaryInverse}" />
                             <Label
-                                Opacity="0.5"
-                                Text="{Binding Followers, StringFormat='{0} followers'}"
+                                FontFamily="RubikLight"
+                                Opacity="0.7"
+                                Text="{Binding Followers, StringFormat='{}{0:n0} followers'}"
                                 TextColor="{StaticResource PrimaryInverse}" />
                         </VerticalStackLayout>
                     </Grid>

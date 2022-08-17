@@ -2,9 +2,7 @@
 
 public interface IBandRepository
 {
-    Result<Band> FindBandById(Guid bandId);
-    Result<Release> FindReleaseById(Guid releaseId);
     IReadOnlyList<Band> GetAll();
-    IReadOnlyList<Release> GetRecentReleases(int amount);
-    IReadOnlyList<Show> GetUpcomingShows(int amount);
+    IReadOnlyList<FullRelease> GetRecentReleases(int amount);
+    IReadOnlyList<FullShow> GetUpcomingShows(int amount);
 }
