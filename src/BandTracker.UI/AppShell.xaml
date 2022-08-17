@@ -23,7 +23,7 @@
                 ContentTemplate="{DataTemplate views:DashboardView}"
                 Route="Dashboard" />
         </Tab>
-        <Tab Title="Bands">
+        <Tab Title="Artists">
             <Tab.Icon>
                 <FontImageSource
                     FontFamily="FaSolid"
@@ -32,9 +32,9 @@
                                             Dark={StaticResource White}}" />
             </Tab.Icon>
             <ShellContent
-                Title="Bands"
+                Title="Artists"
                 ContentTemplate="{DataTemplate views:BandsView}"
-                Route="Bands" />
+                Route="Artists" />
         </Tab>
     </TabBar>
 
