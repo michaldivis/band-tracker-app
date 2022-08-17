@@ -40,6 +40,13 @@
                 TextColor="{StaticResource PrimaryInverse}" />
 
             <VerticalStackLayout BindableLayout.ItemsSource="{Binding RecentReleases}">
+                <BindableLayout.EmptyView>
+                    <Label
+                        FontAttributes="Italic"
+                        Opacity="0.5"
+                        Text="No recent releases"
+                        TextColor="{StaticResource cText}" />
+                </BindableLayout.EmptyView>
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="bands:FullRelease">
                         <Frame
@@ -100,6 +107,13 @@
                 TextColor="{StaticResource PrimaryInverse}" />
 
             <VerticalStackLayout BindableLayout.ItemsSource="{Binding UpcomingShows}">
+                <BindableLayout.EmptyView>
+                    <Label
+                        FontAttributes="Italic"
+                        Opacity="0.5"
+                        Text="No upcoming shows"
+                        TextColor="{StaticResource cText}" />
+                </BindableLayout.EmptyView>
                 <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="bands:FullShow">
                         <Frame

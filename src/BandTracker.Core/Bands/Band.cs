@@ -9,8 +9,17 @@ public class Band
     public List<Release> Releases { get; init; } = new();
     public List<Show> Shows { get; init; } = new();
 
-    public IEnumerable<Release> Albums => Releases.Where(a => a.ReleaseType == "album");
-    public IEnumerable<Release> Singles => Releases.Where(a => a.ReleaseType == "single");
+    public IEnumerable<Release> Albums => Releases
+        .Where(a => a.ReleaseType == "album")
+        .OrderByDescending(a => a.ReleaseDate)
+        .GroupBy(a => a.Name)
+        .Select(a => a.First());
+
+    public IEnumerable<Release> Singles => Releases
+        .Where(a => a.ReleaseType == "single")
+        .OrderByDescending(a => a.ReleaseDate)
+        .GroupBy(a => a.Name)
+        .Select(a => a.First());
 
     public override string ToString()
     {

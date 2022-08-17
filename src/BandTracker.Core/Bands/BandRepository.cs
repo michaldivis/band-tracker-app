@@ -20,6 +20,12 @@ public class BandRepository : IBandRepository
         var random = new Random();
         foreach (var band in bands)
         {
+            if(band.ArtistId == "5fyb3eB9tytxWDlNxPXIDV" || band.ArtistId == "0BIjauWeJCyBiGmo98WrZR")
+            {
+                //skip generating shows for Yatsu and Michal Divis
+                continue;
+            }
+
             var shows = _showFaker
                 .Generate(random.Next(5))
                 .OrderBy(a => a.Date);

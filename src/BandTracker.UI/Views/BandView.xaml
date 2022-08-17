@@ -75,6 +75,13 @@
                             TextColor="{StaticResource cText}" />
 
                         <VerticalStackLayout BindableLayout.ItemsSource="{Binding Band.Albums}">
+                            <BindableLayout.EmptyView>
+                                <Label
+                                    FontAttributes="Italic"
+                                    Opacity="0.5"
+                                    Text="No albums"
+                                    TextColor="{StaticResource cText}" />
+                            </BindableLayout.EmptyView>
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate x:DataType="bands:Release">
                                     <Frame
@@ -125,6 +132,13 @@
                             TextColor="{StaticResource cText}" />
 
                         <VerticalStackLayout BindableLayout.ItemsSource="{Binding Band.Singles}">
+                            <BindableLayout.EmptyView>
+                                <Label
+                                    FontAttributes="Italic"
+                                    Opacity="0.5"
+                                    Text="No singles"
+                                    TextColor="{StaticResource cText}" />
+                            </BindableLayout.EmptyView>
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate x:DataType="bands:Release">
                                     <Frame
@@ -171,6 +185,13 @@
                             TextColor="{StaticResource PrimaryInverse}" />
 
                         <VerticalStackLayout BindableLayout.ItemsSource="{Binding Band.Shows}">
+                            <BindableLayout.EmptyView>
+                                <Label
+                                    FontAttributes="Italic"
+                                    Opacity="0.5"
+                                    Text="No shows"
+                                    TextColor="{StaticResource cText}" />
+                            </BindableLayout.EmptyView>
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate x:DataType="bands:Show">
                                     <Frame

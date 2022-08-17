@@ -3265,7 +3265,10 @@ internal static class RawBands
     {
         ""ArtistId"": ""5fyb3eB9tytxWDlNxPXIDV"",
         ""Name"": ""Michal Divi\u0161"",
-        ""Genres"": [],
+        ""Genres"": [
+            ""djent"",
+            ""progressive metalcore""
+        ],
         ""AvatarImageUrl"": ""https://i.scdn.co/image/ab6761610000e5eb5f06b492b24a2bbc03eb2194"",
         ""Followers"": 8,
         ""Releases"": [
@@ -3349,7 +3352,10 @@ internal static class RawBands
     {
         ""ArtistId"": ""0BIjauWeJCyBiGmo98WrZR"",
         ""Name"": ""Yatsu"",
-        ""Genres"": [],
+        ""Genres"": [
+            ""djent"",
+            ""progressive metalcore""
+        ],
         ""AvatarImageUrl"": ""https://i.scdn.co/image/ab6761610000e5ebba58aa62b9fc186f6a74d6db"",
         ""Followers"": 654,
         ""Releases"": [
