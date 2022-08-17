@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:bands="clr-namespace:BandTracker.Core.Bands;assembly=BandTracker.Core"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+    xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Artists"
@@ -71,7 +72,7 @@
                         <TapGestureRecognizer Command="{Binding BindingContext.GoToBandCommand, Source={RelativeSource AncestorType={x:Type local:BandsView}}}" CommandParameter="{Binding .}" />
                     </Frame.GestureRecognizers>
 
-                    <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                    <Grid ColumnDefinitions="auto,*,auto" ColumnSpacing="10">
                         <Image
                             Grid.Column="0"
                             Aspect="AspectFill"
@@ -99,6 +100,19 @@
                                 Text="{Binding Followers, StringFormat='{}{0:n0} followers'}"
                                 TextColor="{StaticResource PrimaryInverse}" />
                         </VerticalStackLayout>
+                        <Image
+                            Grid.Column="2"
+                            Margin="0,0,10,0"
+                            Opacity="0.5"
+                            VerticalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="FaSolid"
+                                    Glyph="{x:Static fi:FaSolid.ArrowRight}"
+                                    Size="Default"
+                                    Color="{StaticResource PrimaryInverse}" />
+                            </Image.Source>
+                        </Image>
                     </Grid>
                 </Frame>
             </DataTemplate>
