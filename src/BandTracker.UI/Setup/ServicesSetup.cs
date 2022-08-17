@@ -14,5 +14,9 @@ internal static class ServicesSetup
         builder.Services.AddTransient<BandView>();
         builder.Services.AddTransient<DashboardViewModel>();
         builder.Services.AddTransient<DashboardView>();
+        builder.Services.AddTransient<RecentReleasesViewModel>();
+        builder.Services.AddTransient<RecentReleasesView>();
+        builder.Services.AddTransient<UpcomingShowsViewModel>();
+        builder.Services.AddTransient<UpcomingShowsView>();
     }
 }

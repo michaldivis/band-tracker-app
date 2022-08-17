@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using BandTracker.Core.Bands;
+using System.Collections.ObjectModel;
 
 namespace BandTracker.UI.Views;
 
@@ -7,26 +8,24 @@ public partial class DashboardViewModel : VmBase
     public ObservableCollection<FullRelease> RecentReleases { get; }
     public ObservableCollection<FullShow> UpcomingShows { get; }
 
-    public DashboardViewModel()
+    public DashboardViewModel(IBandRepository bandRepository)
     {
-        var bandsRepository = DI.Resolve<IBandRepository>();
-
-        var recentReleases = bandsRepository.GetRecentReleases(5);
+        var recentReleases = bandRepository.GetRecentReleases(5);
         RecentReleases = new(recentReleases);
 
-        var upcomingShows = bandsRepository.GetUpcomingShows(5);
+        var upcomingShows = bandRepository.GetUpcomingShows(5);
         UpcomingShows = new(upcomingShows);
     }
 
     [RelayCommand]
-    private void GoToRecentReleases()
+    private async Task GoToRecentReleasesAsync()
     {
-
+        await Shell.Current.GoToAsync(nameof(RecentReleasesView), true);
     }
 
     [RelayCommand]
-    private void GoToUpcomingShows()
+    private async Task GoToUpcomingShowsAsync()
     {
-
+        await Shell.Current.GoToAsync(nameof(UpcomingShowsView), true);
     }
 }
