@@ -2,12 +2,15 @@ namespace BandTracker.UI.Views;
 
 public partial class BandsView : ContentPage
 {
+	private readonly BandsViewModel _vm;
+
 	private bool _isInitializing = true;
 
-	public BandsView()
+	public BandsView(BandsViewModel vm)
 	{
 		InitializeComponent();
-	}
+        BindingContext = _vm = vm;
+    }
 
 	protected override void OnAppearing()
 	{
@@ -28,16 +31,11 @@ public partial class BandsView : ContentPage
 			return;
 		}
 
-		if(BindingContext is not BandsViewModel vm)
-		{
-			return;
-		}
-
 		var genres = fcgGenres.SelectedItems.Select(a => a.ToString()).ToList();
 
-		if (vm.ReloadBandsCommand.CanExecute(genres))
+		if (_vm.ReloadBandsCommand.CanExecute(genres))
 		{
-			vm.ReloadBandsCommand.Execute(genres);
+            _vm.ReloadBandsCommand.Execute(genres);
         }
     }
 }

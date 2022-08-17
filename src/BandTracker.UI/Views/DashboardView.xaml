@@ -3,16 +3,14 @@
     x:Class="BandTracker.UI.Views.DashboardView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bands="clr-namespace:BandTracker.Core.Bands;assembly=BandTracker.Core"
     xmlns:essentials="clr-namespace:Microsoft.Maui.ApplicationModel;assembly=Microsoft.Maui.Essentials"
     xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     xmlns:skiaExtCtrls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Title="Dashboard"
+    x:DataType="local:DashboardViewModel"
     Shell.NavBarIsVisible="False">
-
-    <ContentPage.BindingContext>
-        <local:DashboardViewModel />
-    </ContentPage.BindingContext>
 
     <ScrollView>
         <ScrollView.Background>
@@ -43,7 +41,7 @@
 
             <VerticalStackLayout BindableLayout.ItemsSource="{Binding RecentReleases}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="bands:Release">
                         <Frame
                             Margin="0,5"
                             Padding="10"
@@ -102,7 +100,7 @@
 
             <VerticalStackLayout BindableLayout.ItemsSource="{Binding UpcomingShows}">
                 <BindableLayout.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="bands:Show">
                         <Frame
                             Margin="0,5"
                             Padding="10"

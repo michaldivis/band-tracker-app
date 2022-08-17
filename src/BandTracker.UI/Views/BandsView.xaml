@@ -3,9 +3,11 @@
     x:Class="BandTracker.UI.Views.BandsView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bands="clr-namespace:BandTracker.Core.Bands;assembly=BandTracker.Core"
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     Title="Bands"
+    x:DataType="local:BandsViewModel"
     Shell.NavBarIsVisible="False">
 
     <ContentPage.Background>
@@ -14,10 +16,6 @@
             <GradientStop Offset="1.0" Color="{StaticResource PrimaryAlt}" />
         </LinearGradientBrush>
     </ContentPage.Background>
-
-    <ContentPage.BindingContext>
-        <local:BandsViewModel />
-    </ContentPage.BindingContext>
 
     <CollectionView ItemsSource="{Binding Bands}">
         <CollectionView.Header>
@@ -54,7 +52,7 @@
             <BoxView HeightRequest="5" Color="Transparent" />
         </CollectionView.Footer>
         <CollectionView.ItemTemplate>
-            <DataTemplate>
+            <DataTemplate x:DataType="bands:Band">
                 <Frame
                     Margin="10,5"
                     Padding="10"
@@ -67,6 +65,10 @@
                             <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
                         </LinearGradientBrush>
                     </Frame.Background>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.GoToBandCommand, Source={RelativeSource AncestorType={x:Type local:BandsView}}}" CommandParameter="{Binding .}" />
+                    </Frame.GestureRecognizers>
 
                     <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
                         <Image

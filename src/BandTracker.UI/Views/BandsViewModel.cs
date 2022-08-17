@@ -29,4 +29,13 @@ public partial class BandsViewModel : VmBase
         var filteredBands = _allBands.Where(a => genres.Contains(a.Genre));
         Bands.ReplaceRange(filteredBands);
     }
+
+    [RelayCommand]
+    private async Task GoToBandAsync(Band band)
+    {
+        await Shell.Current.GoToAsync(nameof(BandView), true, new Dictionary<string, object>
+        {
+            { "BandToOpen", band }
+        });
+    }
 }
