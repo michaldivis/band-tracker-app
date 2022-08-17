@@ -3,6 +3,7 @@
     x:Class="BandTracker.UI.Views.BandsView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     Title="Bands"
     Background="{StaticResource bBackground1}"
@@ -20,13 +21,33 @@
                     Style="{StaticResource LabelH1}"
                     Text="Bands" />
 
-                <HorizontalStackLayout Padding="10" Spacing="10">
-                    <Button Text="Metal" />
-                    <Button Text="Djent" />
-                    <Button Text="Rock" />
-                </HorizontalStackLayout>
+                <dxe:FilterChipGroup
+                    x:Name="fcgGenres"
+                    BackgroundColor="Transparent"
+                    ChipBackgroundColor="{AppThemeBinding Light={StaticResource Gray100},
+                                                          Dark={StaticResource Gray950}}"
+                    ChipBorderColor="{AppThemeBinding Light={StaticResource Gray300},
+                                                      Dark={StaticResource Gray600}}"
+                    ChipCheckIconColor="{StaticResource PrimaryInverse}"
+                    ChipIconColor="{AppThemeBinding Light={StaticResource Black},
+                                                    Dark={StaticResource Black}}"
+                    ChipPressedBorderColor="{StaticResource PrimaryAlt}"
+                    ChipPressedIconColor="{StaticResource PrimaryAlt}"
+                    ChipPressedTextColor="{StaticResource PrimaryAlt}"
+                    ChipSelectedBackgroundColor="{DynamicResource Primary}"
+                    ChipSelectedBorderColor="{StaticResource PrimaryAlt}"
+                    ChipSelectedIconColor="{StaticResource PrimaryInverse}"
+                    ChipSelectedTextColor="{StaticResource PrimaryInverse}"
+                    ChipTextColor="{AppThemeBinding Light={StaticResource Black},
+                                                    Dark={StaticResource Black}}"
+                    ItemsSource="{Binding Genres}"
+                    SelectionChanged="fcgGenres_SelectionChanged" />
+
             </VerticalStackLayout>
         </CollectionView.Header>
+        <CollectionView.Footer>
+            <BoxView HeightRequest="5" Color="Transparent" />
+        </CollectionView.Footer>
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <Frame

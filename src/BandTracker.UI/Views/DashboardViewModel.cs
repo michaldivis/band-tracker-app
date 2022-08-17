@@ -2,7 +2,7 @@
 
 namespace BandTracker.UI.Views;
 
-public partial class DashboardViewModel : ObservableObject
+public partial class DashboardViewModel : VmBase
 {
     public ObservableCollection<Release> RecentReleases { get; }
     public ObservableCollection<Show> UpcomingShows { get; }
