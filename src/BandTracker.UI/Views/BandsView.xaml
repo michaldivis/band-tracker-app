@@ -43,8 +43,10 @@
                     ChipSelectedIconColor="{StaticResource AccentInverse}"
                     ChipSelectedTextColor="{StaticResource AccentInverse}"
                     ChipTextColor="{StaticResource PrimaryInverse}"
+                    HorizontalSpacing="5"
                     ItemsSource="{Binding Genres}"
-                    SelectionChanged="fcgGenres_SelectionChanged" />
+                    SelectionChanged="fcgGenres_SelectionChanged"
+                    VerticalSpacing="5" />
 
             </VerticalStackLayout>
         </CollectionView.Header>

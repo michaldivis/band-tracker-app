@@ -5,7 +5,7 @@
     <Color x:Key="Primary">#3a3399</Color>
     <Color x:Key="PrimaryAlt">#2d2d86</Color>
     <Color x:Key="PrimaryLight">#4139ac</Color>
-    <Color x:Key="PrimaryDark">#251f60</Color>
+    <Color x:Key="PrimaryDark">#2d2574</Color>
     <Color x:Key="PrimaryInverse">#fff</Color>
     <Color x:Key="Accent">#17B794</Color>
     <Color x:Key="AccentAlt">#149f9f</Color>
