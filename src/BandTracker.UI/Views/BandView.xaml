@@ -56,7 +56,7 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span FontFamily="RubikLight" Text="Genres: " />
-                                    <Span Text="{Binding Band.Genres, Converter={toolkit:ListToStringConverter Separator=', '}}" />
+                                    <Span FontAttributes="Italic" Text="{Binding Band.Genres, Converter={toolkit:ListToStringConverter Separator=', '}}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>

@@ -20,6 +20,7 @@
         <CollectionView.Header>
             <VerticalStackLayout>
                 <skiaExtCtrls:SKLottieView
+                    Margin="10,20,10,10"
                     HeightRequest="200"
                     RepeatCount="-1"
                     Source="concert.json" />
@@ -67,15 +68,14 @@
                                 FontAttributes="Bold"
                                 Text="{Binding ArtistName}"
                                 TextColor="{StaticResource cText}" />
-                            <Label Opacity="0.5" TextColor="{StaticResource cText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span FontFamily="RubikLight" Text="{Binding Date, StringFormat='{}{0:d}'}" />
-                                        <Span FontFamily="RubikLight" Text=" at " />
-                                        <Span Text="{Binding Location}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
+                            <Label
+                                Opacity="0.7"
+                                Text="{Binding Date, StringFormat='{}{0:d}'}"
+                                TextColor="{StaticResource cText}" />
+                            <Label
+                                FontAttributes="Italic"
+                                Text="{Binding Location}"
+                                TextColor="{StaticResource cText}" />
                         </VerticalStackLayout>
                     </Grid>
                 </Frame>

@@ -61,17 +61,22 @@
                         </Image>
                         <VerticalStackLayout Grid.Column="1">
                             <Label
-                                FontAttributes="Bold"
-                                Opacity="0.5"
+                                Opacity="0.7"
                                 Text="{Binding ArtistName}"
                                 TextColor="{StaticResource cText}" />
-                            <Label Text="{Binding Name}" TextColor="{StaticResource cText}" />
-                            <Label Opacity="0.5" TextColor="{StaticResource cText}">
+                            <Label
+                                FontAttributes="Bold"
+                                Text="{Binding Name}"
+                                TextColor="{StaticResource cText}" />
+                            <Label
+                                FontAttributes="Italic"
+                                Opacity="0.7"
+                                TextColor="{StaticResource cText}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="{Binding ReleaseType}" />
-                                        <Span FontAttributes="Italic" Text="; released at " />
-                                        <Span FontAttributes="Italic" Text="{Binding ReleaseDate, StringFormat='{}{0:d}'}" />
+                                        <Span Text="; released at " />
+                                        <Span Text="{Binding ReleaseDate, StringFormat='{}{0:d}'}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>

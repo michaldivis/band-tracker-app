@@ -75,11 +75,18 @@
                                 </Image>
                                 <VerticalStackLayout Grid.Column="1">
                                     <Label
-                                        FontAttributes="Bold"
-                                        Opacity="0.5"
+                                        Opacity="0.7"
                                         Text="{Binding ArtistName}"
                                         TextColor="{StaticResource PrimaryInverse}" />
-                                    <Label Text="{Binding Name}" TextColor="{StaticResource PrimaryInverse}" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Text="{Binding Name}"
+                                        TextColor="{StaticResource PrimaryInverse}" />
+                                    <Label
+                                        FontAttributes="Italic"
+                                        Opacity="0.7"
+                                        Text="{Binding ReleaseType}"
+                                        TextColor="{StaticResource PrimaryInverse}" />
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>
@@ -148,15 +155,14 @@
                                         FontAttributes="Bold"
                                         Text="{Binding ArtistName}"
                                         TextColor="{StaticResource PrimaryInverse}" />
-                                    <Label Opacity="0.5" TextColor="{StaticResource PrimaryInverse}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontFamily="RubikLight" Text="{Binding Date, StringFormat='{}{0:d}'}" />
-                                                <Span FontFamily="RubikLight" Text=" at " />
-                                                <Span Text="{Binding Location}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
+                                    <Label
+                                        Opacity="0.7"
+                                        Text="{Binding Date, StringFormat='{}{0:d}'}"
+                                        TextColor="{StaticResource PrimaryInverse}" />
+                                    <Label
+                                        FontAttributes="Italic"
+                                        Text="{Binding Location}"
+                                        TextColor="{StaticResource PrimaryInverse}" />
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>

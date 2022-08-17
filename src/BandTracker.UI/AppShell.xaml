@@ -14,7 +14,7 @@
             <Tab.Icon>
                 <FontImageSource
                     FontFamily="FaSolid"
-                    Glyph="{x:Static fi:FaSolid.Star}"
+                    Glyph="{x:Static fi:FaSolid.Home}"
                     Color="{AppThemeBinding Light={StaticResource Gray900},
                                             Dark={StaticResource White}}" />
             </Tab.Icon>
