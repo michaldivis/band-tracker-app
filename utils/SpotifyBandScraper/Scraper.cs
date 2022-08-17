@@ -16,7 +16,6 @@ public class Scraper
         "6XP64Chkji2mFpszEudUkq", //Frostbitt
         "5fyb3eB9tytxWDlNxPXIDV", //Michal Divis
         "0BIjauWeJCyBiGmo98WrZR", //Yatsu
-        "4dpARuHxo51G3z768sgnrY", //Adele
         "7KoDzIRehLGK5dmARH0mB8", //Revaira
         "6YRr0btzGqfQ5K7r23qjEM", //Allt
         "7o6cOczXTB8ioTAAJTbESf", //Jinjer

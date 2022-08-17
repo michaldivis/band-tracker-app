@@ -20,7 +20,9 @@ public class BandRepository : IBandRepository
         var random = new Random();
         foreach (var band in bands)
         {
-            var shows = _showFaker.Generate(random.Next(5));
+            var shows = _showFaker
+                .Generate(random.Next(5))
+                .OrderBy(a => a.Date);
             band.Shows.AddRange(shows);
         }
 
