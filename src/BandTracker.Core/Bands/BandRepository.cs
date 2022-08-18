@@ -9,6 +9,7 @@ public class BandRepository : IBandRepository
     private readonly List<Band> _bands = new();
     private readonly List<FullRelease> _recentReleases = new();
     private readonly List<FullShow> _upcomingShows = new();
+    private readonly List<string> _genres = new();
 
     private bool _loaded;
 
@@ -43,12 +44,6 @@ public class BandRepository : IBandRepository
 
         foreach (var band in bands)
         {
-            if (band.ArtistId == "5fyb3eB9tytxWDlNxPXIDV" || band.ArtistId == "0BIjauWeJCyBiGmo98WrZR")
-            {
-                //skip generating shows for Yatsu and Michal Divis
-                continue;
-            }
-
             var shows = _showFaker
                 .Generate(random.Next(5))
                 .OrderBy(a => a.Date);
@@ -83,11 +78,20 @@ public class BandRepository : IBandRepository
                     Location = x.Location
                 }))
             .OrderBy(a => a.Date));
+
+        _genres.AddRange(_bands.SelectMany(a => a.Genres).Distinct());
+
+        _loaded = true;
     }
 
     public IReadOnlyList<Band> GetAll()
     {
         return _bands;
+    }
+
+    public IReadOnlyList<string> GetGenres()
+    {
+        return _genres;
     }
 
     public IReadOnlyList<FullRelease> GetRecentReleases(int amount)

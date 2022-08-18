@@ -3,18 +3,22 @@
 namespace BandTracker.UI.Views;
 public partial class BandsViewModel : VmBase
 {
+    private readonly IBandRepository _bandRepository;
+
     private readonly IReadOnlyList<Band> _allBands;
+
     public ObservableCollection<Band> Bands { get; }
-    public ObservableCollection<string> Genres { get; } = new();
+    public ObservableCollection<string> Genres { get; }
 
-    public BandsViewModel()
-	{
-		var bandsRepository = DI.Resolve<IBandRepository>();
-        _allBands = bandsRepository.GetAll();
+    public BandsViewModel(IBandRepository bandRepository)
+    {
+        _bandRepository = bandRepository;
 
+        _allBands = _bandRepository.GetAll();
         Bands = new(_allBands);
 
-        Genres.ReplaceRange(_allBands.SelectMany(a => a.Genres).Distinct());
+        var genres = _bandRepository.GetGenres();
+        Genres = new(genres);
     }
 
     [RelayCommand]

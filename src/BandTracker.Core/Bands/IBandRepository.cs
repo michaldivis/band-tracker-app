@@ -6,6 +6,7 @@ public interface IBandRepository
     void EnsureLoaded();
 
     IReadOnlyList<Band> GetAll();
+    IReadOnlyList<string> GetGenres();
     IReadOnlyList<FullRelease> GetRecentReleases(int amount);
     IReadOnlyList<FullShow> GetUpcomingShows(int amount);
 }
