@@ -8,7 +8,8 @@
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     xmlns:skiaExtCtrls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Title="Recent Releases"
-    x:DataType="local:RecentReleasesViewModel">
+    x:DataType="local:RecentReleasesViewModel"
+    Shell.NavBarIsVisible="False">
 
     <ContentPage.Background>
         <LinearGradientBrush>
@@ -20,6 +21,17 @@
     <CollectionView ItemsSource="{Binding RecentReleases}">
         <CollectionView.Header>
             <VerticalStackLayout>
+                <ImageButton
+                    Padding="10"
+                    Command="{Binding GoBackCommand}"
+                    HorizontalOptions="Start">
+                    <ImageButton.Source>
+                        <FontImageSource
+                            FontFamily="FaSolid"
+                            Glyph="{x:Static fi:FaSolid.ArrowLeft}"
+                            Size="Medium" />
+                    </ImageButton.Source>
+                </ImageButton>
                 <skiaExtCtrls:SKLottieView
                     HeightRequest="200"
                     RepeatCount="-1"

@@ -4,10 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:bands="clr-namespace:BandTracker.Core.Bands;assembly=BandTracker.Core"
+    xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     xmlns:skiaExtCtrls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Title="Upcoming Shows"
-    x:DataType="local:UpcomingShowsViewModel">
+    x:DataType="local:UpcomingShowsViewModel"
+    Shell.NavBarIsVisible="False">
 
     <ContentPage.Background>
         <LinearGradientBrush>
@@ -19,8 +21,19 @@
     <CollectionView ItemsSource="{Binding UpcomingShows}">
         <CollectionView.Header>
             <VerticalStackLayout>
+                <ImageButton
+                    Padding="10"
+                    Command="{Binding GoBackCommand}"
+                    HorizontalOptions="Start">
+                    <ImageButton.Source>
+                        <FontImageSource
+                            FontFamily="FaSolid"
+                            Glyph="{x:Static fi:FaSolid.ArrowLeft}"
+                            Size="Medium" />
+                    </ImageButton.Source>
+                </ImageButton>
                 <skiaExtCtrls:SKLottieView
-                    Margin="10,20,10,10"
+                    Margin="10,0,10,10"
                     HeightRequest="200"
                     RepeatCount="-1"
                     Source="concert.json" />

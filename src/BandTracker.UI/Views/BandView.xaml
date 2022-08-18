@@ -9,7 +9,8 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="{Binding Band.Name}"
     x:DataType="local:BandViewModel"
-    BackgroundColor="{StaticResource cBackground}">
+    BackgroundColor="{StaticResource cBackground}"
+    Shell.NavBarIsVisible="False">
 
     <Grid>
         <Image
@@ -21,6 +22,18 @@
 
         <ScrollView>
             <VerticalStackLayout Spacing="5">
+                <ImageButton
+                    Padding="10"
+                    Command="{Binding GoBackCommand}"
+                    HorizontalOptions="Start">
+                    <ImageButton.Source>
+                        <FontImageSource
+                            FontFamily="FaSolid"
+                            Glyph="{x:Static fi:FaSolid.ArrowLeft}"
+                            Size="Medium" />
+                    </ImageButton.Source>
+                </ImageButton>
+
                 <BoxView HeightRequest="200" Color="Transparent" />
 
                 <Label

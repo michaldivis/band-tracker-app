@@ -9,12 +9,25 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="{Binding Release.Name}"
     x:DataType="local:ReleaseViewModel"
-    BackgroundColor="{StaticResource cBackground}">
+    BackgroundColor="{StaticResource cBackground}"
+    Shell.NavBarIsVisible="False">
     <ScrollView Background="{Binding Release.ArtImageUrl, Converter={StaticResource ImageUrlToGradientConverter}, ConverterParameter={StaticResource cBackgroundDark}}">
 
         <VerticalStackLayout Spacing="10">
+            <ImageButton
+                Padding="10"
+                Command="{Binding GoBackCommand}"
+                HorizontalOptions="Start">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="FaSolid"
+                        Glyph="{x:Static fi:FaSolid.ArrowLeft}"
+                        Size="Medium" />
+                </ImageButton.Source>
+            </ImageButton>
+
             <Image
-                Margin="10,20,10,0"
+                Margin="10,0"
                 Aspect="AspectFill"
                 HeightRequest="200"
                 Shadow="{StaticResource ShadowSmooth}"
