@@ -6,7 +6,6 @@
     xmlns:bands="clr-namespace:BandTracker.Core.Bands;assembly=BandTracker.Core"
     xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="{Binding Band.Name}"
     x:DataType="local:BandViewModel"
     BackgroundColor="{StaticResource cBackground}"
@@ -70,7 +69,7 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span FontFamily="RubikLight" Text="Genres: " />
-                                    <Span FontAttributes="Italic" Text="{Binding Band.Genres, Converter={toolkit:ListToStringConverter Separator=', '}}" />
+                                    <Span FontAttributes="Italic" Text="{Binding Band.Genres, Converter={StaticResource ListOfStringDisplayConverter}}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>

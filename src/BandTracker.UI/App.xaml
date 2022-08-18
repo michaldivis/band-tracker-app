@@ -22,6 +22,7 @@
                                     iOS='5,5'}" />
 
             <localConverters:ImageUrlToGradientConverter x:Key="ImageUrlToGradientConverter" />
+            <localConverters:ListOfStringDisplayConverter x:Key="ListOfStringDisplayConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

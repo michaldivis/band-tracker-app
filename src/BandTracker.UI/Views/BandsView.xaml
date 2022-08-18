@@ -7,7 +7,6 @@
     xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
     xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="Artists"
     x:DataType="local:BandsViewModel"
     Shell.NavBarIsVisible="False">
@@ -93,7 +92,7 @@
                                 TextColor="{StaticResource PrimaryInverse}" />
                             <Label
                                 Opacity="0.7"
-                                Text="{Binding Genres, Converter={toolkit:ListToStringConverter Separator=', '}}"
+                                Text="{Binding Genres, Converter={StaticResource ListOfStringDisplayConverter}}"
                                 TextColor="{StaticResource PrimaryInverse}" />
                             <Label
                                 FontAttributes="Italic"
