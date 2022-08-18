@@ -2,6 +2,9 @@
 
 public interface IBandRepository
 {
+    Task EnsureLoadedAsync();
+    void EnsureLoaded();
+
     IReadOnlyList<Band> GetAll();
     IReadOnlyList<FullRelease> GetRecentReleases(int amount);
     IReadOnlyList<FullShow> GetUpcomingShows(int amount);

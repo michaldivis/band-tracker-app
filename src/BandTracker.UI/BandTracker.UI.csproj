@@ -68,6 +68,9 @@
 	  <MauiXaml Update="Views\DashboardView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\InitializeView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\RecentReleasesView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

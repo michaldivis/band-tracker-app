@@ -6,7 +6,11 @@ public class BandRepository : IBandRepository
 {
     private readonly Faker<Show> _showFaker;
 
-    private readonly List<Band> _bands;
+    private readonly List<Band> _bands = new();
+    private readonly List<FullRelease> _recentReleases = new();
+    private readonly List<FullShow> _upcomingShows = new();
+
+    private bool _loaded;
 
     public BandRepository()
     {
@@ -14,13 +18,32 @@ public class BandRepository : IBandRepository
             .RuleFor(a => a.ShowId, Guid.NewGuid())
             .RuleFor(a => a.Location, f => $"{f.Address.City()}, {f.Address.Country()}")
             .RuleFor(a => a.Date, f => f.Date.Future());
+    }
+
+    public async Task EnsureLoadedAsync()
+    {
+        if (_loaded)
+        {
+            return;
+        }
+
+        await Task.Run(EnsureLoaded).ConfigureAwait(false);
+    }
+
+    public void EnsureLoaded()
+    {
+        if (_loaded)
+        {
+            return;
+        }
 
         var bands = JsonSerializer.Deserialize<List<Band>>(RawBands.Json);
 
         var random = new Random();
+
         foreach (var band in bands)
         {
-            if(band.ArtistId == "5fyb3eB9tytxWDlNxPXIDV" || band.ArtistId == "0BIjauWeJCyBiGmo98WrZR")
+            if (band.ArtistId == "5fyb3eB9tytxWDlNxPXIDV" || band.ArtistId == "0BIjauWeJCyBiGmo98WrZR")
             {
                 //skip generating shows for Yatsu and Michal Divis
                 continue;
@@ -32,17 +55,9 @@ public class BandRepository : IBandRepository
             band.Shows.AddRange(shows);
         }
 
-        _bands = bands;     
-    }
+        _bands.AddRange(bands);
 
-    public IReadOnlyList<Band> GetAll()
-    {
-        return _bands;
-    }
-
-    public IReadOnlyList<FullRelease> GetRecentReleases(int amount)
-    {
-        return _bands
+        _recentReleases.AddRange(_bands
             .SelectMany(a => a.Releases
                 .Select(x => new FullRelease
                 {
@@ -55,14 +70,9 @@ public class BandRepository : IBandRepository
                     ReleaseType = x.ReleaseType,
                     Tracks = x.Tracks
                 }))
-            .OrderByDescending(a => a.ReleaseDate)
-            .Take(amount)
-            .ToList();
-    }
+            .OrderByDescending(a => a.ReleaseDate));
 
-    public IReadOnlyList<FullShow> GetUpcomingShows(int amount)
-    {
-        return _bands
+        _upcomingShows.AddRange(_bands
             .SelectMany(a => a.Shows
                 .Select(x => new FullShow
                 {
@@ -72,7 +82,24 @@ public class BandRepository : IBandRepository
                     Date = x.Date,
                     Location = x.Location
                 }))
-            .OrderBy(a => a.Date)
+            .OrderBy(a => a.Date));
+    }
+
+    public IReadOnlyList<Band> GetAll()
+    {
+        return _bands;
+    }
+
+    public IReadOnlyList<FullRelease> GetRecentReleases(int amount)
+    {
+        return _recentReleases
+            .Take(amount)
+            .ToList();
+    }
+
+    public IReadOnlyList<FullShow> GetUpcomingShows(int amount)
+    {
+        return _upcomingShows
             .Take(amount)
             .ToList();
     }

@@ -1,4 +1,6 @@
-﻿namespace BandTracker.UI;
+﻿using BandTracker.UI.Views;
+
+namespace BandTracker.UI;
 
 public partial class App : Application
 {
@@ -6,6 +8,6 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        MainPage = new AppShell();
+        MainPage = new InitializeView();
     }
 }
