@@ -11,15 +11,11 @@ public class Band
 
     public IEnumerable<Release> Albums => Releases
         .Where(a => a.ReleaseType == "album")
-        .OrderByDescending(a => a.ReleaseDate)
-        .GroupBy(a => a.Name)
-        .Select(a => a.First());
+        .OrderByDescending(a => a.ReleaseDate);
 
     public IEnumerable<Release> Singles => Releases
         .Where(a => a.ReleaseType == "single")
-        .OrderByDescending(a => a.ReleaseDate)
-        .GroupBy(a => a.Name)
-        .Select(a => a.First());
+        .OrderByDescending(a => a.ReleaseDate);
 
     public override string ToString()
     {

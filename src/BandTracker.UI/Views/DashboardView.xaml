@@ -85,7 +85,7 @@
                                     <Label
                                         FontAttributes="Italic"
                                         Opacity="0.7"
-                                        Text="{Binding ReleaseType}"
+                                        Text="{Binding DisplayReleaseType}"
                                         TextColor="{StaticResource PrimaryInverse}" />
                                 </VerticalStackLayout>
                             </Grid>

@@ -58,6 +58,11 @@ public class Scraper
                             continue;
                         }
 
+                        if (!album.Artists.Any(a => a.Id == artist.Id))
+                        {
+                            continue;
+                        }
+
                         var tracks = new List<Track>();
                         var songs = await spotify.Albums.GetTracks(album.Id);
 

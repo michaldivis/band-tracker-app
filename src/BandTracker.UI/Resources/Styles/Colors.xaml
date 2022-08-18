@@ -14,7 +14,7 @@
 
     <Color x:Key="cText">#fff</Color>
     <Color x:Key="cBackground">#212121</Color>
-    <Color x:Key="cBackgroundLight">#404040</Color>
+    <Color x:Key="cBackgroundLight">#363636</Color>
     <Color x:Key="cBackgroundDark">#141414</Color>
 
     <Color x:Key="White">White</Color>
