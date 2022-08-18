@@ -10,31 +10,11 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <Tab Title="Dashboard">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="FaSolid"
-                    Glyph="{x:Static fi:FaSolid.Home}"
-                    Color="{AppThemeBinding Light={StaticResource Gray900},
-                                            Dark={StaticResource White}}" />
-            </Tab.Icon>
-            <ShellContent
-                Title="Dashboard"
-                ContentTemplate="{DataTemplate views:DashboardView}"
-                Route="Dashboard" />
+        <Tab Title="Dashboard" Icon="{FontImage FontFamily=FaSolid, Glyph={x:Static fi:FaSolid.Home}}">
+            <ShellContent ContentTemplate="{DataTemplate views:DashboardView}" />
         </Tab>
-        <Tab Title="Artists">
-            <Tab.Icon>
-                <FontImageSource
-                    FontFamily="FaSolid"
-                    Glyph="{x:Static fi:FaSolid.Music}"
-                    Color="{AppThemeBinding Light={StaticResource Gray900},
-                                            Dark={StaticResource White}}" />
-            </Tab.Icon>
-            <ShellContent
-                Title="Artists"
-                ContentTemplate="{DataTemplate views:BandsView}"
-                Route="Artists" />
+        <Tab Title="Artists" Icon="{FontImage FontFamily=FaSolid, Glyph={x:Static fi:FaSolid.Users}}">
+            <ShellContent ContentTemplate="{DataTemplate views:BandsView}" />
         </Tab>
     </TabBar>
 
