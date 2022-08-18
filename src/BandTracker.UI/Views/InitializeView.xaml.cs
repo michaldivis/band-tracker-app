@@ -14,8 +14,8 @@ public partial class InitializeView : ContentPage
     {
         base.OnAppearing();
 
-        var progress = new Progress<string>(text => _vm.ProgressText = text);
+        await _vm.InitializeAppAsync();
 
-        await _vm.InitializeAppAsync(progress);
+        Application.Current.MainPage = new AppShell();
     }
 }

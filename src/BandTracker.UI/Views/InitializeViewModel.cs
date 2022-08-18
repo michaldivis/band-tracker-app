@@ -12,19 +12,17 @@ public partial class InitializeViewModel : VmBase
         _bandRepository = bandRepository;
     }
 
-    public async Task InitializeAppAsync(IProgress<string> progress)
+    public async Task InitializeAppAsync()
     {
-        progress.Report("Loading artists");
+        ProgressText = "Loading artists";
         await _bandRepository.EnsureLoadedAsync();
 
         //pretend to load things...
-        progress.Report("Loading recent releases");
+        ProgressText = "Loading recent releases";
         await Task.Delay(500);
-        progress.Report("Loading upcoming shows");
+        ProgressText = "Loading upcoming shows";
         await Task.Delay(500);
-        progress.Report("Making coffee");
+        ProgressText = "Making coffee";
         await Task.Delay(500);
-
-        Application.Current.MainPage = new AppShell();
     }
 }
