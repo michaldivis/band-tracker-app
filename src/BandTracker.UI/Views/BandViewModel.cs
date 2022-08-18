@@ -11,7 +11,8 @@ public partial class BandViewModel : VmBase
     {
         await Shell.Current.GoToAsync(nameof(ReleaseView), true, new Dictionary<string, object>
         {
-            { "ReleaseToOpen", release }
+            { nameof(ReleaseViewModel.ArtistName), Band?.Name },
+            { nameof(ReleaseViewModel.Release), release }
         });
     }
 }

@@ -1,5 +1,4 @@
-﻿using BandTracker.Core.Bands;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace BandTracker.UI.Views;
 
@@ -34,7 +33,8 @@ public partial class DashboardViewModel : VmBase
     {
         await Shell.Current.GoToAsync(nameof(ReleaseView), true, new Dictionary<string, object>
         {
-            { "ReleaseToOpen", release }
+            { nameof(ReleaseViewModel.ArtistName), release.ArtistName },
+            { nameof(ReleaseViewModel.Release), release.ToBasicRelease() }
         });
     }
 }

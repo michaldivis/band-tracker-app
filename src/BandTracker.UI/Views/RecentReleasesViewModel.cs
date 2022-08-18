@@ -11,4 +11,14 @@ public partial class RecentReleasesViewModel : VmBase
         var recentReleases = bandRepository.GetRecentReleases(100);
         RecentReleases = new(recentReleases);
     }
+
+    [RelayCommand]
+    private async Task GoToReleaseAsync(FullRelease release)
+    {
+        await Shell.Current.GoToAsync(nameof(ReleaseView), true, new Dictionary<string, object>
+        {
+            { nameof(ReleaseViewModel.ArtistName), release.ArtistName },
+            { nameof(ReleaseViewModel.Release), release.ToBasicRelease() }
+        });
+    }
 }

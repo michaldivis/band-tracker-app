@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:bands="clr-namespace:BandTracker.Core.Bands;assembly=BandTracker.Core"
+    xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     xmlns:skiaExtCtrls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Title="Recent Releases"
@@ -48,7 +49,11 @@
                         </LinearGradientBrush>
                     </Frame.Background>
 
-                    <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BindingContext.GoToReleaseCommand, Source={RelativeSource AncestorType={x:Type local:RecentReleasesView}}}" CommandParameter="{Binding .}" />
+                    </Frame.GestureRecognizers>
+
+                    <Grid ColumnDefinitions="auto,*,auto" ColumnSpacing="10">
                         <Image
                             Grid.Column="0"
                             Aspect="AspectFill"
@@ -74,13 +79,26 @@
                                 TextColor="{StaticResource cText}">
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="{Binding ReleaseType}" />
+                                        <Span Text="{Binding DisplayReleaseType}" />
                                         <Span Text="; released at " />
                                         <Span Text="{Binding ReleaseDate, StringFormat='{}{0:d}'}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                         </VerticalStackLayout>
+                        <Image
+                            Grid.Column="2"
+                            Margin="0,0,10,0"
+                            Opacity="0.5"
+                            VerticalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="FaSolid"
+                                    Glyph="{x:Static fi:FaSolid.ArrowRight}"
+                                    Size="Default"
+                                    Color="{StaticResource PrimaryInverse}" />
+                            </Image.Source>
+                        </Image>
                     </Grid>
                 </Frame>
             </DataTemplate>

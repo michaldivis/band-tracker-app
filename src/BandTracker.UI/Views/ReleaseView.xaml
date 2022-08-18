@@ -30,6 +30,11 @@
                 Shadow="{StaticResource ShadowSmooth}"
                 Style="{StaticResource LabelH2}"
                 Text="{Binding Release.Name}" />
+            <Label
+                Margin="20,-5,0,0"
+                FontAttributes="Italic"
+                Shadow="{StaticResource ShadowSmooth}"
+                Text="{Binding ArtistName, StringFormat='by {0}'}" />
 
             <Frame
                 Margin="10,0,10,10"
