@@ -50,6 +50,11 @@ public class Scraper
 
                 await foreach (var album in spotify.Paginate(albums))
                 {
+                    if (!album.AvailableMarkets.Contains("CZ"))
+                    {
+                        continue;
+                    }
+
                     var tracks = new List<Track>();
                     var songs = await spotify.Albums.GetTracks(album.Id);
 
@@ -63,13 +68,14 @@ public class Scraper
                         });
                     }
 
+                    var releaseDateParsed = DateTime.TryParse(album.ReleaseDate, out var releaseDate);
+
                     releases.Add(new Release
                     {
-                        //Author = band,
                         AlbumId = album.Id,
                         Name = album.Name,
-                        ArtImageUrl = album.Images.MaxBy(a => a.Height).Url,
-                        ReleaseDate = DateTime.Parse(album.ReleaseDate),
+                        ArtImageUrl = album.Images.MaxBy(a => a.Height * a.Width).Url,
+                        ReleaseDate = releaseDateParsed ? releaseDate : DateTime.MinValue,
                         ReleaseType = album.AlbumType,
                         Tracks = tracks
                     });
@@ -80,12 +86,15 @@ public class Scraper
                     ArtistId = artist.Id,
                     Name = artist.Name,
                     Followers = artist.Followers.Total,
-                    AvatarImageUrl = artist.Images.MaxBy(a => a.Height).Url,
+                    AvatarImageUrl = artist.Images.MaxBy(a => a.Height * a.Width).Url,
                     Genres = artist.Genres,
                     Releases = releases
                 });
 
                 Console.WriteLine($"Imported {artist.Name}");
+
+                Console.WriteLine("Waiting...");
+                await Task.Delay(5000);
             }
             catch (Exception ex)
             {
