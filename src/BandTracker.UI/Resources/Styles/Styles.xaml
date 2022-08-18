@@ -21,10 +21,10 @@
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
-    <Style TargetType="Button">
+    <Style x:Key="ButtonBase" TargetType="Button">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource AccentInverse}, Dark={StaticResource AccentInverse}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Accent}, Dark={StaticResource Accent}}" />
-        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontFamily" Value="RubikSemiBold" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Padding" Value="14,10" />
@@ -36,6 +36,31 @@
                         <VisualState.Setters>
                             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
                             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <Style BasedOn="{StaticResource ButtonBase}" TargetType="Button" />
+
+    <Style
+        x:Key="ButtonPrimary"
+        BasedOn="{StaticResource ButtonBase}"
+        TargetType="Button">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{StaticResource AccentLight}" />
+                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{StaticResource Gray500}" />
+                            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>

@@ -113,16 +113,8 @@
 
             <Button
                 Command="{Binding GoToRecentReleasesCommand}"
-                FontFamily="RubikSemiBold"
-                Text="SEE RECENT RELEASES"
-                TextColor="{StaticResource AccentLight}">
-                <Button.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
-                        <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
+                Style="{StaticResource ButtonPrimary}"
+                Text="SEE RECENT RELEASES" />
 
             <Label
                 Margin="0,20,0,0"
@@ -189,16 +181,8 @@
 
             <Button
                 Command="{Binding GoToUpcomingShowsCommand}"
-                FontFamily="RubikSemiBold"
-                Text="SEE UPCOMING SHOWS"
-                TextColor="{StaticResource AccentLight}">
-                <Button.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
-                        <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
+                Style="{StaticResource ButtonPrimary}"
+                Text="SEE UPCOMING SHOWS" />
 
             <skiaExtCtrls:SKLottieView
                 HeightRequest="50"
