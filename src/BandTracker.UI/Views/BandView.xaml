@@ -98,7 +98,11 @@
                                             </LinearGradientBrush>
                                         </Frame.Background>
 
-                                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.GoToReleaseCommand, Source={RelativeSource AncestorType={x:Type local:BandView}}}" CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
+
+                                        <Grid ColumnDefinitions="auto,*,auto" ColumnSpacing="10">
                                             <Image
                                                 Grid.Column="0"
                                                 Aspect="AspectFill"
@@ -124,6 +128,19 @@
                                                     Text="{Binding Tracks.Count, StringFormat='{0} tracks'}"
                                                     TextColor="{StaticResource cText}" />
                                             </VerticalStackLayout>
+                                            <Image
+                                                Grid.Column="2"
+                                                Margin="0,0,10,0"
+                                                Opacity="0.5"
+                                                VerticalOptions="Center">
+                                                <Image.Source>
+                                                    <FontImageSource
+                                                        FontFamily="FaSolid"
+                                                        Glyph="{x:Static fi:FaSolid.ArrowRight}"
+                                                        Size="Default"
+                                                        Color="{StaticResource PrimaryInverse}" />
+                                                </Image.Source>
+                                            </Image>
                                         </Grid>
                                     </Frame>
                                 </DataTemplate>
@@ -159,7 +176,11 @@
                                             </LinearGradientBrush>
                                         </Frame.Background>
 
-                                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.GoToReleaseCommand, Source={RelativeSource AncestorType={x:Type local:BandView}}}" CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
+
+                                        <Grid ColumnDefinitions="auto,*,auto" ColumnSpacing="10">
                                             <Image
                                                 Grid.Column="0"
                                                 Aspect="AspectFill"
@@ -185,6 +206,19 @@
                                                     Text="{Binding DisplayReleaseType}"
                                                     TextColor="{StaticResource cText}" />
                                             </VerticalStackLayout>
+                                            <Image
+                                                Grid.Column="2"
+                                                Margin="0,0,10,0"
+                                                Opacity="0.5"
+                                                VerticalOptions="Center">
+                                                <Image.Source>
+                                                    <FontImageSource
+                                                        FontFamily="FaSolid"
+                                                        Glyph="{x:Static fi:FaSolid.ArrowRight}"
+                                                        Size="Default"
+                                                        Color="{StaticResource PrimaryInverse}" />
+                                                </Image.Source>
+                                            </Image>
                                         </Grid>
                                     </Frame>
                                 </DataTemplate>

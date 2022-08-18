@@ -71,6 +71,9 @@
 	  <MauiXaml Update="Views\RecentReleasesView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ReleaseView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\UpcomingShowsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

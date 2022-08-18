@@ -9,6 +9,7 @@ public partial class AppShell : Shell
         InitializeComponent();
 
         Routing.RegisterRoute(nameof(BandView), typeof(BandView));
+        Routing.RegisterRoute(nameof(ReleaseView), typeof(ReleaseView));
         Routing.RegisterRoute(nameof(RecentReleasesView), typeof(RecentReleasesView));
         Routing.RegisterRoute(nameof(UpcomingShowsView), typeof(UpcomingShowsView));
     }
