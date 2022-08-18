@@ -5,6 +5,9 @@ internal static class ServicesSetup
 {
     public static void Configure(MauiAppBuilder builder)
     {
+        builder.Services.AddHttpClient();
+        builder.Services.AddSingleton<ImageColorReader>();        
+
         builder.Services.AddSingleton<IUserRepository, UserRepository>();
         builder.Services.AddSingleton<IBandRepository, BandRepository>();
 

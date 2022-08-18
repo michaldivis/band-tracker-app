@@ -10,11 +10,14 @@
     Title="{Binding Release.Name}"
     x:DataType="local:ReleaseViewModel"
     BackgroundColor="{StaticResource cBackground}">
-    <ScrollView>
-        <VerticalStackLayout Padding="10" Spacing="10">
+    <ScrollView Background="{Binding Release.ArtImageUrl, Converter={StaticResource ImageUrlToGradientConverter}, ConverterParameter={StaticResource cBackgroundDark}}">
+
+        <VerticalStackLayout Spacing="10">
             <Image
+                Margin="10,20,10,0"
                 Aspect="AspectFill"
                 HeightRequest="200"
+                Shadow="{StaticResource ShadowSmooth}"
                 Source="{Binding Release.ArtImageUrl}"
                 WidthRequest="200">
                 <Image.Clip>
@@ -22,44 +25,63 @@
                 </Image.Clip>
             </Image>
 
-            <Label Style="{StaticResource LabelH2}" Text="{Binding Release.Name}" />
+            <Label
+                Margin="20,0,0,0"
+                Shadow="{StaticResource ShadowSmooth}"
+                Style="{StaticResource LabelH2}"
+                Text="{Binding Release.Name}" />
 
-            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Release.Tracks}">
-                <BindableLayout.EmptyView>
-                    <Label
-                        FontAttributes="Italic"
-                        Opacity="0.5"
-                        Text="No tracks"
-                        TextColor="{StaticResource cText}" />
-                </BindableLayout.EmptyView>
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="bands:Track">
-                        <Frame
-                            Margin="0,5"
-                            Padding="10"
-                            BorderColor="Transparent"
-                            HasShadow="False">
+            <Frame
+                Margin="10,0,10,10"
+                Padding="10"
+                BorderColor="{StaticResource cBackground}"
+                CornerRadius="20"
+                HasShadow="False">
 
-                            <Frame.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Offset="0.1" Color="{StaticResource cBackground}" />
-                                    <GradientStop Offset="1.0" Color="{StaticResource cBackgroundLight}" />
-                                </LinearGradientBrush>
-                            </Frame.Background>
+                <Frame.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Offset="0.1" Color="{StaticResource cBackground}" />
+                        <GradientStop Offset="1.0" Color="{StaticResource cBackgroundDark}" />
+                    </LinearGradientBrush>
+                </Frame.Background>
 
-                            <Label TextColor="{StaticResource cText}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding TrackNumber, StringFormat='{}{0:00}'}" />
-                                        <Span Text=" " />
-                                        <Span FontAttributes="Bold" Text="{Binding Name}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </Frame>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </VerticalStackLayout>
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding Release.Tracks}">
+                    <BindableLayout.EmptyView>
+                        <Label
+                            FontAttributes="Italic"
+                            Opacity="0.5"
+                            Text="No tracks"
+                            TextColor="{StaticResource cText}" />
+                    </BindableLayout.EmptyView>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="bands:Track">
+                            <Frame
+                                Margin="0,5"
+                                Padding="10"
+                                BorderColor="Transparent"
+                                HasShadow="False">
+
+                                <Frame.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Offset="0.1" Color="{StaticResource cBackground}" />
+                                        <GradientStop Offset="1.0" Color="{StaticResource cBackgroundLight}" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+
+                                <Label TextColor="{StaticResource cText}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding TrackNumber, StringFormat='{}{0:00}'}" />
+                                            <Span Text=" " />
+                                            <Span FontAttributes="Bold" Text="{Binding Name}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </Frame>
 
         </VerticalStackLayout>
     </ScrollView>
