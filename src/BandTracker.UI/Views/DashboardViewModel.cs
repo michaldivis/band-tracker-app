@@ -28,4 +28,13 @@ public partial class DashboardViewModel : VmBase
     {
         await Shell.Current.GoToAsync(nameof(UpcomingShowsView), true);
     }
+
+    [RelayCommand]
+    private async Task GoToReleaseAsync(FullRelease release)
+    {
+        await Shell.Current.GoToAsync(nameof(ReleaseView), true, new Dictionary<string, object>
+        {
+            { "ReleaseToOpen", release }
+        });
+    }
 }
