@@ -40,13 +40,14 @@ public class Scraper
 
         var bands = new List<Band>();
 
-        foreach (var artistId in _artistIds)
+        var artistsResponse = await spotify.Artists.GetSeveral(new ArtistsRequest(_artistIds));
+
+        foreach (var artist in artistsResponse.Artists)
         {
             try
             {
                 var releases = new List<Release>();
-                var artist = await spotify.Artists.Get(artistId);
-                var albums = await spotify.Artists.GetAlbums(artistId);
+                var albums = await spotify.Artists.GetAlbums(artist.Id);
 
                 await foreach (var album in spotify.Paginate(albums))
                 {
@@ -98,7 +99,7 @@ public class Scraper
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error for artist ID {artistId}: {ex}");
+                Console.WriteLine($"Error for artist ID {artist.Id}: {ex}");
             }
         }
 
