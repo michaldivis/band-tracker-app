@@ -44,66 +44,89 @@ public class Scraper
 
         foreach (var artist in artistsResponse.Artists)
         {
-            try
+            while (true)
             {
-                var releases = new List<Release>();
-                var albums = await spotify.Artists.GetAlbums(artist.Id);
-
-                await foreach (var album in spotify.Paginate(albums))
+                try
                 {
-                    if (!album.AvailableMarkets.Contains("CZ"))
-                    {
-                        continue;
-                    }
+                    var releases = new List<Release>();
+                    var albums = await spotify.Artists.GetAlbums(artist.Id);
 
-                    var tracks = new List<Track>();
-                    var songs = await spotify.Albums.GetTracks(album.Id);
-
-                    await foreach (var song in spotify.Paginate(songs))
+                    await foreach (var album in spotify.Paginate(albums))
                     {
-                        tracks.Add(new Track
+                        if (!album.AvailableMarkets.Contains("CZ"))
                         {
-                            TrackId = song.Id,
-                            Name = song.Name,
-                            TrackNumber = song.TrackNumber
+                            continue;
+                        }
+
+                        var tracks = new List<Track>();
+                        var songs = await spotify.Albums.GetTracks(album.Id);
+
+                        await foreach (var song in spotify.Paginate(songs))
+                        {
+                            tracks.Add(new Track
+                            {
+                                TrackId = song.Id,
+                                Name = song.Name,
+                                TrackNumber = song.TrackNumber
+                            });
+                        }
+
+                        var releaseDateParsed = DateTime.TryParse(album.ReleaseDate, out var releaseDate);
+
+                        releases.Add(new Release
+                        {
+                            AlbumId = album.Id,
+                            Name = album.Name,
+                            ArtImageUrl = album.Images.MinBy(a => Math.Abs(a.Height - 300)).Url,
+                            ReleaseDate = releaseDateParsed ? releaseDate : DateTime.MinValue,
+                            ReleaseType = album.AlbumType,
+                            Tracks = tracks
                         });
                     }
 
-                    var releaseDateParsed = DateTime.TryParse(album.ReleaseDate, out var releaseDate);
+                    var filteredReleases = releases
+                        .GroupBy(a => a.Name.ToLower().Trim())
+                        .Select(a => a.OrderByDescending(x => x.ReleaseDate).First())
+                        .ToList();
 
-                    releases.Add(new Release
+                    var note = "";
+                    if (filteredReleases.Count != releases.Count)
                     {
-                        AlbumId = album.Id,
-                        Name = album.Name,
-                        ArtImageUrl = album.Images.MaxBy(a => a.Height * a.Width).Url,
-                        ReleaseDate = releaseDateParsed ? releaseDate : DateTime.MinValue,
-                        ReleaseType = album.AlbumType,
-                        Tracks = tracks
+                        note = $", removed duplicate releases: {releases.Count - filteredReleases.Count}";
+                    }
+
+                    bands.Add(new Band
+                    {
+                        ArtistId = artist.Id,
+                        Name = artist.Name,
+                        Followers = artist.Followers.Total,
+                        AvatarImageUrl = artist.Images.MaxBy(a => a.Height * a.Width).Url,
+                        Genres = artist.Genres,
+                        Releases = filteredReleases
                     });
+
+                    Console.WriteLine($"Imported {artist.Name}{note}");
+                    break;
                 }
-
-                bands.Add(new Band
+                catch(SpotifyAPI.Web.APITooManyRequestsException)
                 {
-                    ArtistId = artist.Id,
-                    Name = artist.Name,
-                    Followers = artist.Followers.Total,
-                    AvatarImageUrl = artist.Images.MaxBy(a => a.Height * a.Width).Url,
-                    Genres = artist.Genres,
-                    Releases = releases
-                });
-
-                Console.WriteLine($"Imported {artist.Name}");
-
-                Console.WriteLine("Waiting...");
-                await Task.Delay(5000);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error for artist ID {artist.Id}: {ex}");
+                    Console.WriteLine("Too many requests, waiting...");
+                    await Task.Delay(5000);
+                    continue;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error for artist ID {artist.Id}: {ex}");
+                    break;
+                }
             }
         }
 
-        var serialized = JsonSerializer.Serialize(bands, new JsonSerializerOptions
+        var orderedBands = bands
+            .OrderBy(a => a.Name)
+            .ToList();
+
+        var serialized = JsonSerializer.Serialize(orderedBands, new JsonSerializerOptions
         {
             WriteIndented = true
         });
