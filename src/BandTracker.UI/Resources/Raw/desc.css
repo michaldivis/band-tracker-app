@@ -1,0 +1,13 @@
+body {
+    background: black;
+    color: #C8C8C8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a:link {
+    color: #4139ac;
+}
+
+a:hover {
+    color: #17B794;
+}

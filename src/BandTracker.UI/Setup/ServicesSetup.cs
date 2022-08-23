@@ -1,4 +1,5 @@
-﻿using BandTracker.UI.Views;
+﻿using BandTracker.UI.Services;
+using BandTracker.UI.Views;
 
 namespace BandTracker.UI.Setup;
 internal static class ServicesSetup
@@ -10,6 +11,9 @@ internal static class ServicesSetup
 
         builder.Services.AddSingleton<IUserRepository, UserRepository>();
         builder.Services.AddSingleton<IBandRepository, BandRepository>();
+
+        builder.Services.AddSingleton<IHtmlAssetProvider, PlatformHtmlAssetProvider>();
+        builder.Services.AddSingleton<IHtmlUtilityService, HtmlUtilityService>();        
 
         builder.Services.AddTransient<BandsViewModel>();
         builder.Services.AddTransient<BandsView>();

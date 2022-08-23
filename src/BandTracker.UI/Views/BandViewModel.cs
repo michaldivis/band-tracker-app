@@ -3,8 +3,20 @@
 [QueryProperty("Band", "BandToOpen")]
 public partial class BandViewModel : VmBase
 {
+    private readonly IHtmlUtilityService _htmlUtilityService;
+
     [ObservableProperty]
-    private Band? _band;
+    private Band? _band;    
+
+    [ObservableProperty]
+    private string? _htmlDescription;
+
+    public BandViewModel(IHtmlUtilityService htmlUtilityService)
+    {
+        _htmlUtilityService = htmlUtilityService;
+
+        HtmlDescription = htmlUtilityService.GetFullHtmlPage(RawBandsHtml.DemoArtistBio);
+    }
 
     [RelayCommand]
     private async Task GoToReleaseAsync(Release release)

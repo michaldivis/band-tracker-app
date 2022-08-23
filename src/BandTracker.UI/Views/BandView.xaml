@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:bands="clr-namespace:BandTracker.Core.Bands;assembly=BandTracker.Core"
+    xmlns:controls="clr-namespace:BandTracker.UI.Controls"
     xmlns:fi="clr-namespace:BandTracker.UI.FontIcons"
     xmlns:local="clr-namespace:BandTracker.UI.Views"
     Title="{Binding Band.Name}"
@@ -288,6 +289,21 @@
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </VerticalStackLayout>
+
+                        <Label
+                            Margin="5,20,0,0"
+                            Style="{StaticResource LabelH2}"
+                            Text="Bio"
+                            TextColor="{StaticResource PrimaryInverse}" />
+
+                        <Frame
+                            Padding="0"
+                            BorderColor="Transparent"
+                            CornerRadius="10"
+                            HasShadow="False">
+                            <controls:HtmlDisplay HtmlContent="{Binding HtmlDescription}" />
+                        </Frame>
+
                     </VerticalStackLayout>
                 </Frame>
             </VerticalStackLayout>
