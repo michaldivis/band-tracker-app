@@ -13,6 +13,7 @@ A demo .NET MAUI app.
 - [`FilterChipGroup`](https://docs.devexpress.com/MAUI/DevExpress.Maui.Editors.FilterChipGroup) control from DevExpress (free)
 - Frames, Gradients
 - Setting background to the average color of an album art using [SkiaSharp](https://github.com/mono/SkiaSharp)
+- Showing rich artist bio with links using a `WebView` control
 
 ## The Result
 
