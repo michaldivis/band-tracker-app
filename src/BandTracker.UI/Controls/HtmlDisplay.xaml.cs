@@ -33,9 +33,6 @@ public partial class HtmlDisplay : ContentView
         _logger = DI.Resolve<ILogger<HtmlDisplay>>();
 
         _logger.LogDebug("HtmlDisplay-{InstanceId}: Constructor", _instanceId);
-
-        TheWebView.Navigating += TheWebView_Navigating;
-        TheWebView.Navigated += TheWebView_Navigated;
     }
 
     static void OnHtmlContentChanged(BindableObject bindable, object oldValue, object newValue)
@@ -65,7 +62,7 @@ public partial class HtmlDisplay : ContentView
         TheWebView.Source = source;
     }
 
-    private void TheWebView_Navigating(object? sender, WebNavigatingEventArgs e)
+    private void TheWebView_Navigating(object sender, WebNavigatingEventArgs e)
     {
         if (e.NavigationEvent != WebNavigationEvent.NewPage)
         {
@@ -83,7 +80,7 @@ public partial class HtmlDisplay : ContentView
         }
     }
 
-    private async void TheWebView_Navigated(object? sender, WebNavigatedEventArgs e)
+    private async void TheWebView_Navigated(object sender, WebNavigatedEventArgs e)
     {
         //TODO the WebView.Navigated is never triggered for some reason
 

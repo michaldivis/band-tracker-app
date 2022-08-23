@@ -27,4 +27,10 @@ public partial class BandViewModel : VmBase
             { nameof(ReleaseViewModel.Release), release }
         });
     }
+
+    [RelayCommand]
+    private async Task BioLinkClicked(string link)
+    {
+        await Application.Current.MainPage.DisplayAlert("Bio link clicked", link, "OK");
+    }
 }

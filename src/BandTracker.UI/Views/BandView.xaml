@@ -301,7 +301,7 @@
                             BorderColor="Transparent"
                             CornerRadius="10"
                             HasShadow="False">
-                            <controls:HtmlDisplay HtmlContent="{Binding HtmlDescription}" />
+                            <controls:HtmlDisplay HtmlContent="{Binding HtmlDescription}" LinkClickedCommand="{Binding BioLinkClickedCommand}" />
                         </Frame>
 
                     </VerticalStackLayout>
