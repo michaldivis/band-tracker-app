@@ -2,7 +2,7 @@
 using Android.Runtime;
 
 namespace BandTracker.UI;
-[Application(UsesCleartextTraffic = true)]
+[Application]
 public class MainApplication : MauiApplication
 {
     public MainApplication(IntPtr handle, JniHandleOwnership ownership)
