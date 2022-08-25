@@ -16,5 +16,4 @@ A demo .NET MAUI app.
 - Showing rich artist bio with links using a `WebView` control
 
 ## The Result
-
-https://user-images.githubusercontent.com/45868547/185387919-d2531065-b3db-457a-a0ce-46ef78717683.mp4
+https://user-images.githubusercontent.com/45868547/186608790-45f86dbc-ed11-4cdc-af7a-6e61e9b199e9.mp4
