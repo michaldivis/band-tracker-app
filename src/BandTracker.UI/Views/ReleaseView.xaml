@@ -11,7 +11,7 @@
     x:DataType="local:ReleaseViewModel"
     BackgroundColor="{StaticResource cBackground}"
     Shell.NavBarIsVisible="False">
-    <ScrollView Background="{Binding Release.ArtImageUrl, Converter={StaticResource ImageUrlToGradientConverter}, ConverterParameter={StaticResource cBackgroundDark}}">
+    <ScrollView Background="{Binding BackgroundBrush}">
 
         <VerticalStackLayout Spacing="10">
             <ImageButton

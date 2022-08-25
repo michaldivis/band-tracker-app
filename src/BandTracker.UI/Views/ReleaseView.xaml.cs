@@ -9,4 +9,9 @@ public partial class ReleaseView : ContentPage
         InitializeComponent();
         BindingContext = _vm = vm;
     }
+
+    protected override async void OnAppearing()
+    {
+        await _vm.OnInitializedAsync();
+    }
 }

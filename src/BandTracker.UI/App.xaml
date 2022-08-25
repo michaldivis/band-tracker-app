@@ -21,7 +21,6 @@
                 Offset="{OnPlatform Default='10,10',
                                     iOS='5,5'}" />
 
-            <localConverters:ImageUrlToGradientConverter x:Key="ImageUrlToGradientConverter" />
             <localConverters:ListOfStringDisplayConverter x:Key="ListOfStringDisplayConverter" />
         </ResourceDictionary>
     </Application.Resources>

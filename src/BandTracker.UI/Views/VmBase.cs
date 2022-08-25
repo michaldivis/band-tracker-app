@@ -7,4 +7,9 @@ public partial class VmBase : ObservableObject
     {
         await Shell.Current.GoToAsync("..", true);
     }
+
+    public virtual Task OnInitializedAsync()
+    {
+        return Task.CompletedTask;
+    }
 }

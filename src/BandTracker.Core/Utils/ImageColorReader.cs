@@ -11,7 +11,7 @@ public class ImageColorReader
         _httpClientFactory = httpClientFactory;
     }
 
-    public async Task<Result<Color>> GetAverageColorAsync(string imageUrl)
+    public async Task<Result<Color>> GetAverageColorAsync(string? imageUrl)
 	{
         if (string.IsNullOrEmpty(imageUrl))
         {
