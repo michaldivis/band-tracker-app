@@ -13,12 +13,43 @@
     Shell.NavBarIsVisible="False">
 
     <Grid>
-        <Image
-            Margin="0,-50,0,0"
-            Aspect="AspectFill"
-            HorizontalOptions="FillAndExpand"
-            Source="{Binding Band.AvatarImageUrl}"
-            VerticalOptions="Start" />
+
+        <Grid>
+            <Image
+                Margin="0,-25,0,0"
+                Aspect="AspectFill"
+                HeightRequest="400"
+                HorizontalOptions="FillAndExpand"
+                Source="{Binding Band.AvatarImageUrl}"
+                VerticalOptions="Start" />
+
+            <Border
+                Margin="-5"
+                HeightRequest="70"
+                Opacity="0.5"
+                StrokeThickness="0"
+                VerticalOptions="Start">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Offset="0.1" Color="{StaticResource cBackground}" />
+                        <GradientStop Offset="1.0" Color="Transparent" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Border
+                Margin="-5,175,-5,-5"
+                HeightRequest="200"
+                StrokeThickness="0"
+                VerticalOptions="Start">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Offset="0.0" Color="Transparent" />
+                        <GradientStop Offset="0.75" Color="{StaticResource cBackground}" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+        </Grid>
 
         <ScrollView>
             <VerticalStackLayout Spacing="5">
