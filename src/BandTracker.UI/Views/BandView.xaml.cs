@@ -1,12 +1,9 @@
 namespace BandTracker.UI.Views;
 
-public partial class BandView : ContentPage
+public partial class BandView
 {
-	private readonly BandViewModel _vm;
-
-	public BandView(BandViewModel vm)
+	public BandView(BandViewModel vm) : base(vm)
 	{
 		InitializeComponent();
-        BindingContext = _vm = vm;
     }
 }

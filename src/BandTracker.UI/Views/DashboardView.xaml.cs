@@ -1,12 +1,9 @@
 namespace BandTracker.UI.Views;
 
-public partial class DashboardView : ContentPage
+public partial class DashboardView
 {
-	private readonly DashboardViewModel _vm;
-
-	public DashboardView(DashboardViewModel vm)
+	public DashboardView(DashboardViewModel vm) : base(vm)
 	{
 		InitializeComponent();
-        BindingContext = _vm = vm;
 	}
 }

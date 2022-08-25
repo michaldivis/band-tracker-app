@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<local:ViewBase
     x:Class="BandTracker.UI.Views.UpcomingShowsView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -9,7 +9,8 @@
     xmlns:skiaExtCtrls="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     Title="Upcoming Shows"
     x:DataType="local:UpcomingShowsViewModel"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
 
     <ContentPage.Background>
         <LinearGradientBrush>
@@ -18,82 +19,84 @@
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    <CollectionView ItemsSource="{Binding UpcomingShows}">
-        <CollectionView.Header>
-            <VerticalStackLayout>
-                <ImageButton
-                    Padding="10"
-                    Command="{Binding GoBackCommand}"
-                    HorizontalOptions="Start">
-                    <ImageButton.Source>
-                        <FontImageSource
-                            FontFamily="FaSolid"
-                            Glyph="{x:Static fi:FaSolid.ArrowLeft}"
-                            Size="Medium" />
-                    </ImageButton.Source>
-                </ImageButton>
-                <skiaExtCtrls:SKLottieView
-                    Margin="10,0,10,10"
-                    HeightRequest="200"
-                    RepeatCount="-1"
-                    Source="concert.json" />
-                <Label
-                    Margin="10,20,10,0"
-                    Style="{StaticResource LabelH1}"
-                    Text="Upcoming shows"
-                    TextColor="{StaticResource cText}" />
-            </VerticalStackLayout>
-        </CollectionView.Header>
-        <CollectionView.Footer>
-            <BoxView HeightRequest="5" Color="Transparent" />
-        </CollectionView.Footer>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="bands:FullShow">
-                <Frame
-                    Margin="10,5"
-                    Padding="10"
-                    BorderColor="Transparent"
-                    HasShadow="False">
+    <local:ViewBase.PageContent>
+        <CollectionView ItemsSource="{Binding UpcomingShows}">
+            <CollectionView.Header>
+                <VerticalStackLayout>
+                    <ImageButton
+                        Padding="10"
+                        Command="{Binding GoBackCommand}"
+                        HorizontalOptions="Start">
+                        <ImageButton.Source>
+                            <FontImageSource
+                                FontFamily="FaSolid"
+                                Glyph="{x:Static fi:FaSolid.ArrowLeft}"
+                                Size="Medium" />
+                        </ImageButton.Source>
+                    </ImageButton>
+                    <skiaExtCtrls:SKLottieView
+                        Margin="10,0,10,10"
+                        HeightRequest="200"
+                        RepeatCount="-1"
+                        Source="concert.json" />
+                    <Label
+                        Margin="10,20,10,0"
+                        Style="{StaticResource LabelH1}"
+                        Text="Upcoming shows"
+                        TextColor="{StaticResource cText}" />
+                </VerticalStackLayout>
+            </CollectionView.Header>
+            <CollectionView.Footer>
+                <BoxView HeightRequest="5" Color="Transparent" />
+            </CollectionView.Footer>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="bands:FullShow">
+                    <Frame
+                        Margin="10,5"
+                        Padding="10"
+                        BorderColor="Transparent"
+                        HasShadow="False">
 
-                    <Frame.Background>
-                        <LinearGradientBrush>
-                            <GradientStop Offset="0.1" Color="{StaticResource cBackground}" />
-                            <GradientStop Offset="1.0" Color="{StaticResource cBackgroundLight}" />
-                        </LinearGradientBrush>
-                    </Frame.Background>
+                        <Frame.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Offset="0.1" Color="{StaticResource cBackground}" />
+                                <GradientStop Offset="1.0" Color="{StaticResource cBackgroundLight}" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
 
-                    <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
-                        <Image
-                            Grid.Column="0"
-                            Aspect="AspectFill"
-                            HeightRequest="60"
-                            Source="{Binding ArtistAvatarImageUrl}"
-                            WidthRequest="60">
-                            <Image.Clip>
-                                <EllipseGeometry
-                                    Center="30,30"
-                                    RadiusX="30"
-                                    RadiusY="30" />
-                            </Image.Clip>
-                        </Image>
-                        <VerticalStackLayout Grid.Column="1">
-                            <Label
-                                FontAttributes="Bold"
-                                Text="{Binding ArtistName}"
-                                TextColor="{StaticResource cText}" />
-                            <Label
-                                Opacity="0.7"
-                                Text="{Binding Date, StringFormat='{}{0:d}'}"
-                                TextColor="{StaticResource cText}" />
-                            <Label
-                                FontAttributes="Italic"
-                                Text="{Binding Location}"
-                                TextColor="{StaticResource cText}" />
-                        </VerticalStackLayout>
-                    </Grid>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                            <Image
+                                Grid.Column="0"
+                                Aspect="AspectFill"
+                                HeightRequest="60"
+                                Source="{Binding ArtistAvatarImageUrl}"
+                                WidthRequest="60">
+                                <Image.Clip>
+                                    <EllipseGeometry
+                                        Center="30,30"
+                                        RadiusX="30"
+                                        RadiusY="30" />
+                                </Image.Clip>
+                            </Image>
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="{Binding ArtistName}"
+                                    TextColor="{StaticResource cText}" />
+                                <Label
+                                    Opacity="0.7"
+                                    Text="{Binding Date, StringFormat='{}{0:d}'}"
+                                    TextColor="{StaticResource cText}" />
+                                <Label
+                                    FontAttributes="Italic"
+                                    Text="{Binding Location}"
+                                    TextColor="{StaticResource cText}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </local:ViewBase.PageContent>
 
-</ContentPage>
+</local:ViewBase>

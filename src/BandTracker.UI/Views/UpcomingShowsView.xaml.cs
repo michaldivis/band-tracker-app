@@ -1,12 +1,9 @@
 namespace BandTracker.UI.Views;
 
-public partial class UpcomingShowsView : ContentPage
+public partial class UpcomingShowsView
 {
-    private readonly UpcomingShowsViewModel _vm;
-
-    public UpcomingShowsView(UpcomingShowsViewModel vm)
+    public UpcomingShowsView(UpcomingShowsViewModel vm) : base(vm)
 	{
 		InitializeComponent();
-        BindingContext = _vm = vm;
     }
 }

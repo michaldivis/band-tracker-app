@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<local:ViewBase
     x:Class="BandTracker.UI.Views.DashboardView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -12,189 +12,191 @@
     x:DataType="local:DashboardViewModel"
     Shell.NavBarIsVisible="False">
 
-    <ScrollView>
-        <ScrollView.Background>
-            <LinearGradientBrush>
-                <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
-                <GradientStop Offset="1.0" Color="{StaticResource PrimaryAlt}" />
-            </LinearGradientBrush>
-        </ScrollView.Background>
+    <local:ViewBase.PageContent>
+        <ScrollView>
+            <ScrollView.Background>
+                <LinearGradientBrush>
+                    <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
+                    <GradientStop Offset="1.0" Color="{StaticResource PrimaryAlt}" />
+                </LinearGradientBrush>
+            </ScrollView.Background>
 
-        <VerticalStackLayout Padding="10" Spacing="10">
+            <VerticalStackLayout Padding="10" Spacing="10">
 
-            <Label
-                Margin="0,10,0,0"
-                Style="{StaticResource LabelH1}"
-                Text="Dashboard"
-                TextColor="{StaticResource PrimaryInverse}" />
+                <Label
+                    Margin="0,10,0,0"
+                    Style="{StaticResource LabelH1}"
+                    Text="Dashboard"
+                    TextColor="{StaticResource PrimaryInverse}" />
 
-            <skiaExtCtrls:SKLottieView
-                HeightRequest="200"
-                RepeatCount="-1"
-                Source="guitarplayingpeople.json" />
+                <skiaExtCtrls:SKLottieView
+                    HeightRequest="200"
+                    RepeatCount="-1"
+                    Source="guitarplayingpeople.json" />
 
-            <Label
-                Margin="0,20,0,0"
-                Style="{StaticResource LabelH2}"
-                Text="Recent releases"
-                TextColor="{StaticResource PrimaryInverse}" />
+                <Label
+                    Margin="0,20,0,0"
+                    Style="{StaticResource LabelH2}"
+                    Text="Recent releases"
+                    TextColor="{StaticResource PrimaryInverse}" />
 
-            <VerticalStackLayout BindableLayout.ItemsSource="{Binding RecentReleases}">
-                <BindableLayout.EmptyView>
-                    <Label
-                        FontAttributes="Italic"
-                        Opacity="0.5"
-                        Text="No recent releases"
-                        TextColor="{StaticResource cText}" />
-                </BindableLayout.EmptyView>
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="bands:FullRelease">
-                        <Frame
-                            Margin="0,5"
-                            Padding="10"
-                            BorderColor="Transparent"
-                            HasShadow="False">
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding RecentReleases}">
+                    <BindableLayout.EmptyView>
+                        <Label
+                            FontAttributes="Italic"
+                            Opacity="0.5"
+                            Text="No recent releases"
+                            TextColor="{StaticResource cText}" />
+                    </BindableLayout.EmptyView>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="bands:FullRelease">
+                            <Frame
+                                Margin="0,5"
+                                Padding="10"
+                                BorderColor="Transparent"
+                                HasShadow="False">
 
-                            <Frame.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
-                                    <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
-                                </LinearGradientBrush>
-                            </Frame.Background>
+                                <Frame.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
+                                        <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
 
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BindingContext.GoToReleaseCommand, Source={RelativeSource AncestorType={x:Type local:DashboardView}}}" CommandParameter="{Binding .}" />
-                            </Frame.GestureRecognizers>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.GoToReleaseCommand, Source={RelativeSource AncestorType={x:Type local:DashboardView}}}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
 
-                            <Grid ColumnDefinitions="auto,*,auto" ColumnSpacing="10">
-                                <Image
-                                    Grid.Column="0"
-                                    Aspect="AspectFill"
-                                    HeightRequest="60"
-                                    Source="{Binding ArtImageUrl}"
-                                    WidthRequest="60">
-                                    <Image.Clip>
-                                        <RoundRectangleGeometry CornerRadius="5" Rect="0,0,60,60" />
-                                    </Image.Clip>
-                                </Image>
-                                <VerticalStackLayout Grid.Column="1">
-                                    <Label
-                                        Opacity="0.7"
-                                        Text="{Binding ArtistName}"
-                                        TextColor="{StaticResource PrimaryInverse}" />
-                                    <Label
-                                        FontAttributes="Bold"
-                                        Text="{Binding Name}"
-                                        TextColor="{StaticResource PrimaryInverse}" />
-                                    <Label
-                                        FontAttributes="Italic"
-                                        Opacity="0.7"
-                                        Text="{Binding DisplayReleaseType}"
-                                        TextColor="{StaticResource PrimaryInverse}" />
-                                </VerticalStackLayout>
-                                <Image
-                                    Grid.Column="2"
-                                    Margin="0,0,10,0"
-                                    Opacity="0.5"
-                                    VerticalOptions="Center">
-                                    <Image.Source>
-                                        <FontImageSource
-                                            FontFamily="FaSolid"
-                                            Glyph="{x:Static fi:FaSolid.ArrowRight}"
-                                            Size="Default"
-                                            Color="{StaticResource PrimaryInverse}" />
-                                    </Image.Source>
-                                </Image>
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
+                                <Grid ColumnDefinitions="auto,*,auto" ColumnSpacing="10">
+                                    <Image
+                                        Grid.Column="0"
+                                        Aspect="AspectFill"
+                                        HeightRequest="60"
+                                        Source="{Binding ArtImageUrl}"
+                                        WidthRequest="60">
+                                        <Image.Clip>
+                                            <RoundRectangleGeometry CornerRadius="5" Rect="0,0,60,60" />
+                                        </Image.Clip>
+                                    </Image>
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label
+                                            Opacity="0.7"
+                                            Text="{Binding ArtistName}"
+                                            TextColor="{StaticResource PrimaryInverse}" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            Text="{Binding Name}"
+                                            TextColor="{StaticResource PrimaryInverse}" />
+                                        <Label
+                                            FontAttributes="Italic"
+                                            Opacity="0.7"
+                                            Text="{Binding DisplayReleaseType}"
+                                            TextColor="{StaticResource PrimaryInverse}" />
+                                    </VerticalStackLayout>
+                                    <Image
+                                        Grid.Column="2"
+                                        Margin="0,0,10,0"
+                                        Opacity="0.5"
+                                        VerticalOptions="Center">
+                                        <Image.Source>
+                                            <FontImageSource
+                                                FontFamily="FaSolid"
+                                                Glyph="{x:Static fi:FaSolid.ArrowRight}"
+                                                Size="Default"
+                                                Color="{StaticResource PrimaryInverse}" />
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <Button
+                    Command="{Binding GoToRecentReleasesCommand}"
+                    Style="{StaticResource ButtonPrimary}"
+                    Text="SEE RECENT RELEASES" />
+
+                <Label
+                    Margin="0,20,0,0"
+                    Style="{StaticResource LabelH2}"
+                    Text="Upcoming shows"
+                    TextColor="{StaticResource PrimaryInverse}" />
+
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding UpcomingShows}">
+                    <BindableLayout.EmptyView>
+                        <Label
+                            FontAttributes="Italic"
+                            Opacity="0.5"
+                            Text="No upcoming shows"
+                            TextColor="{StaticResource cText}" />
+                    </BindableLayout.EmptyView>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="bands:FullShow">
+                            <Frame
+                                Margin="0,5"
+                                Padding="10"
+                                BorderColor="Transparent"
+                                HasShadow="False">
+
+                                <Frame.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
+                                        <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
+                                    </LinearGradientBrush>
+                                </Frame.Background>
+
+                                <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                                    <Image
+                                        Grid.Column="0"
+                                        Aspect="AspectFill"
+                                        HeightRequest="60"
+                                        Source="{Binding ArtistAvatarImageUrl}"
+                                        WidthRequest="60">
+                                        <Image.Clip>
+                                            <EllipseGeometry
+                                                Center="30,30"
+                                                RadiusX="30"
+                                                RadiusY="30" />
+                                        </Image.Clip>
+                                    </Image>
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            Text="{Binding ArtistName}"
+                                            TextColor="{StaticResource PrimaryInverse}" />
+                                        <Label
+                                            Opacity="0.7"
+                                            Text="{Binding Date, StringFormat='{}{0:d}'}"
+                                            TextColor="{StaticResource PrimaryInverse}" />
+                                        <Label
+                                            FontAttributes="Italic"
+                                            Text="{Binding Location}"
+                                            TextColor="{StaticResource PrimaryInverse}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <Button
+                    Command="{Binding GoToUpcomingShowsCommand}"
+                    Style="{StaticResource ButtonPrimary}"
+                    Text="SEE UPCOMING SHOWS" />
+
+                <skiaExtCtrls:SKLottieView
+                    HeightRequest="50"
+                    RepeatCount="-1"
+                    Source="waveform.json" />
+
+                <Label
+                    Margin="10"
+                    HorizontalTextAlignment="Center"
+                    Opacity="0.5"
+                    Text="{Binding Source={x:Static essentials:AppInfo.Version}, StringFormat='v{0}'}"
+                    TextColor="{StaticResource PrimaryInverse}" />
             </VerticalStackLayout>
-
-            <Button
-                Command="{Binding GoToRecentReleasesCommand}"
-                Style="{StaticResource ButtonPrimary}"
-                Text="SEE RECENT RELEASES" />
-
-            <Label
-                Margin="0,20,0,0"
-                Style="{StaticResource LabelH2}"
-                Text="Upcoming shows"
-                TextColor="{StaticResource PrimaryInverse}" />
-
-            <VerticalStackLayout BindableLayout.ItemsSource="{Binding UpcomingShows}">
-                <BindableLayout.EmptyView>
-                    <Label
-                        FontAttributes="Italic"
-                        Opacity="0.5"
-                        Text="No upcoming shows"
-                        TextColor="{StaticResource cText}" />
-                </BindableLayout.EmptyView>
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate x:DataType="bands:FullShow">
-                        <Frame
-                            Margin="0,5"
-                            Padding="10"
-                            BorderColor="Transparent"
-                            HasShadow="False">
-
-                            <Frame.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Offset="0.1" Color="{StaticResource Primary}" />
-                                    <GradientStop Offset="1.0" Color="{StaticResource PrimaryLight}" />
-                                </LinearGradientBrush>
-                            </Frame.Background>
-
-                            <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
-                                <Image
-                                    Grid.Column="0"
-                                    Aspect="AspectFill"
-                                    HeightRequest="60"
-                                    Source="{Binding ArtistAvatarImageUrl}"
-                                    WidthRequest="60">
-                                    <Image.Clip>
-                                        <EllipseGeometry
-                                            Center="30,30"
-                                            RadiusX="30"
-                                            RadiusY="30" />
-                                    </Image.Clip>
-                                </Image>
-                                <VerticalStackLayout Grid.Column="1">
-                                    <Label
-                                        FontAttributes="Bold"
-                                        Text="{Binding ArtistName}"
-                                        TextColor="{StaticResource PrimaryInverse}" />
-                                    <Label
-                                        Opacity="0.7"
-                                        Text="{Binding Date, StringFormat='{}{0:d}'}"
-                                        TextColor="{StaticResource PrimaryInverse}" />
-                                    <Label
-                                        FontAttributes="Italic"
-                                        Text="{Binding Location}"
-                                        TextColor="{StaticResource PrimaryInverse}" />
-                                </VerticalStackLayout>
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </VerticalStackLayout>
-
-            <Button
-                Command="{Binding GoToUpcomingShowsCommand}"
-                Style="{StaticResource ButtonPrimary}"
-                Text="SEE UPCOMING SHOWS" />
-
-            <skiaExtCtrls:SKLottieView
-                HeightRequest="50"
-                RepeatCount="-1"
-                Source="waveform.json" />
-
-            <Label
-                Margin="10"
-                HorizontalTextAlignment="Center"
-                Opacity="0.5"
-                Text="{Binding Source={x:Static essentials:AppInfo.Version}, StringFormat='v{0}'}"
-                TextColor="{StaticResource PrimaryInverse}" />
-        </VerticalStackLayout>
-    </ScrollView>
-</ContentPage>
+        </ScrollView>
+    </local:ViewBase.PageContent>
+</local:ViewBase>

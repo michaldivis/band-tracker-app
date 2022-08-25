@@ -17,13 +17,14 @@ public static class MauiProgram
             .UseSkiaSharp()
             .ConfigureFonts(fonts =>
             {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                fonts.AddFont("Rubik-Light.ttf", "RubikLight");
-                fonts.AddFont("Rubik-Regular.ttf", "RubikRegular");
-                fonts.AddFont("Rubik-SemiBold.ttf", "RubikSemiBold");
-                fonts.AddFont("Rubik-Bold.ttf", "RubikBold");
-                fonts.AddFont("fa-solid-900.ttf", "FaSolid");
+                fonts
+                    .AddFont("OpenSans-Regular.ttf", "OpenSansRegular")
+                    .AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold")
+                    .AddFont("Rubik-Light.ttf", "RubikLight")
+                    .AddFont("Rubik-Regular.ttf", "RubikRegular")
+                    .AddFont("Rubik-SemiBold.ttf", "RubikSemiBold")
+                    .AddFont("Rubik-Bold.ttf", "RubikBold")
+                    .AddFont("fa-solid-900.ttf", "FaSolid");
             });
 
         ServicesSetup.Configure(builder);

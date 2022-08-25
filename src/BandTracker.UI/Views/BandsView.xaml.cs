@@ -1,26 +1,17 @@
 namespace BandTracker.UI.Views;
 
-public partial class BandsView : ContentPage
+public partial class BandsView
 {
-	private readonly BandsViewModel _vm;
-
 	private bool _isInitializing = true;
 
-	public BandsView(BandsViewModel vm)
+	public BandsView(BandsViewModel vm) : base(vm)
 	{
 		InitializeComponent();
-        BindingContext = _vm = vm;
-    }
-
-	protected override void OnAppearing()
-	{
-		base.OnAppearing();
     }
 
 	protected override void OnSizeAllocated(double width, double height)
 	{
 		base.OnSizeAllocated(width, height);
-
         _isInitializing = false;
     }
 
@@ -33,9 +24,6 @@ public partial class BandsView : ContentPage
 
 		var genres = fcgGenres.SelectedItems.Select(a => a.ToString()).ToList();
 
-		if (_vm.ReloadBandsCommand.CanExecute(genres))
-		{
-            _vm.ReloadBandsCommand.Execute(genres);
-        }
+        ((BandsViewModel)_vm).ReloadBandsCommand.TryExecute(genres);
     }
 }

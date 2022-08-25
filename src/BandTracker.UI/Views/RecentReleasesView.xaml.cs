@@ -1,12 +1,9 @@
 namespace BandTracker.UI.Views;
 
-public partial class RecentReleasesView : ContentPage
+public partial class RecentReleasesView
 {
-    private readonly RecentReleasesViewModel _vm;
-
-    public RecentReleasesView(RecentReleasesViewModel vm)
+    public RecentReleasesView(RecentReleasesViewModel vm) : base(vm)
 	{
 		InitializeComponent();
-        BindingContext = _vm = vm;
     }
 }

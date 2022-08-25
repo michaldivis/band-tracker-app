@@ -1,17 +1,9 @@
 namespace BandTracker.UI.Views;
 
-public partial class ReleaseView : ContentPage
+public partial class ReleaseView
 {
-    private readonly ReleaseViewModel _vm;
-
-    public ReleaseView(ReleaseViewModel vm)
+    public ReleaseView(ReleaseViewModel vm) : base(vm)
     {
         InitializeComponent();
-        BindingContext = _vm = vm;
-    }
-
-    protected override async void OnAppearing()
-    {
-        await _vm.OnInitializedAsync();
     }
 }
